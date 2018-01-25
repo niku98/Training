@@ -54,24 +54,24 @@ Truyền gói tin từ tầng mạng tới các máy chủ khác nhau.
 Bao gồm hai phần:
 - **Header:**
 <ul>
-<li>**Source port:** Cổng tại máy gửi</li>
-<li>**Destination port:** Cổng tại máy nhận</li>
-<li>**Sequence Number:** Nếu cờ SYN bật thì nó là số thứ tự gói ban đầu và byte đầu tiên được gửi có số thứ tự này cộng thêm 1. Nếu không có cờ SYN thì đây là số thứ tự của byte đầu tiên.</li>
-<li>**Acknowledgement number:** Nếu cờ ACK bật thì giá trị của trường chính là số thứ tự gói tin tiếp theo mà bên nhận cần.</li>
-<li>**Data offset:** Trường có độ dài 4 bit quy định độ dài của phần header (tính theo đơn vị từ 32 bit). Phần header có độ dài tối thiểu là 5 từ (160 bit) và tối đa là 15 từ (480 bit).</li>
-<li>**Reserved**</li>
-<li>**Flag**
+<li> **Source port:** Cổng tại máy gửi </li>
+<li> **Destination port:** Cổng tại máy nhận </li>
+<li> **Sequence Number:** Nếu cờ SYN bật thì nó là số thứ tự gói ban đầu và byte đầu tiên được gửi có số thứ tự này cộng thêm 1. Nếu không có cờ SYN thì đây là số thứ tự của byte đầu tiên. </li>
+<li> **Acknowledgement number:** Nếu cờ ACK bật thì giá trị của trường chính là số thứ tự gói tin tiếp theo mà bên nhận cần. </li>
+<li> **Data offset:** Trường có độ dài 4 bit quy định độ dài của phần header (tính theo đơn vị từ 32 bit). Phần header có độ dài tối thiểu là 5 từ (160 bit) và tối đa là 15 từ (480 bit). </li>
+<li> **Reserved**</li>
+<li> **Flag**
 <ul>
-<li>**URG:** cho trường Urgent pointer</li>
-<li>**ACK:** cho trường Acknowledgement</li>
-<li>**PSH:** Hàm push</li>
-<li>**RST:** Thiết lập lại đường truyền</li>
-<li>**FIN:** Không gửi thêm số liệu</li>
+<li> **URG:** cho trường Urgent pointer </li>
+<li> **ACK:** cho trường Acknowledgement </li>
+<li> **PSH:** Hàm push</li>
+<li> **RST:** Thiết lập lại đường truyền </li>
+<li> **FIN:** Không gửi thêm số liệu </li>
 </ul>
 </li>
-<li>**Window:** Số byte có thể nhận bắt đầu từ giá trị của trường báo nhận (ACK)</li>
-<li>**Checksum:** Số byte có thể nhận bắt đầu từ giá trị của trường báo nhận (ACK)</li>
-<li>**Options:** Đây là trường tùy chọn. Nếu có thì độ dài là bội số của 32 bitbit.</li>
+<li> **Window:** Số byte có thể nhận bắt đầu từ giá trị của trường báo nhận (ACK) </li>
+<li> **Checksum:** Số byte có thể nhận bắt đầu từ giá trị của trường báo nhận (ACK) </li>
+<li>  **Options:** Đây là trường tùy chọn. Nếu có thì độ dài là bội số của 32 bitbit. </li>
 </li>
 </ul>
 - **Data:**
