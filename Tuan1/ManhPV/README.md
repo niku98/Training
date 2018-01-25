@@ -4,6 +4,9 @@
 Là mô hình mạng phân lớp, gồm 7 lớp, mỗi lớp phụ trách một chức năng riêng. Mô hình OSI cho phép các máy từ những nhà sản xuất khác nhau có thể giao tiếp được với nhau, trước khi mô hình này ra đời, chỉ những máy được sản xuất từ cùng một hàng mới có thể giao tiếp được với nhau qua mạng.
 
 ### Các lớp của mô hình OSI
+
+<img src="http://2.bp.blogspot.com/_oI4G5UUCxnU/TRxegRxWZaI/AAAAAAAAAJ4/49EnNEMpPt8/s1600/osi.gif">
+
 #### 1. Lớp Application
 Là lớp đầu tiên, trên cùng của mô hình OSI. Lớp này có nhiệm vụ cung cấp giao thức cho các ứng dụng người dùng sử dụng.<br />
 **Các giao thức:** HTTP, SMTP, FTP, Telnet, SSH,...
@@ -37,11 +40,20 @@ Tương tự như mô hình OSI, mô hình TCP/IP là mô hình phân lớp, nh�
 
 ### Các lớp của mô hình TCP/IP
 
+<img src="https://4.bp.blogspot.com/-z3ks4An958s/V8lG64oSsbI/AAAAAAAAANQ/9Ear_1_rr9Q1xdwq4LI8l-BPAtpgv592ACLcB/s1600/3.png" />
+
 #### 1. Lớp Application
 Lớp Application trong mô hình TCP/IP đã được tích hợp thêm các chức năng của lớp Presentation và lớp Session trong mô hình OSI. Như vậy, chức năng của lớp này bao gồm các việc về cung cấp giao thức cho ứng dung, biểu diễn, mã hóa thông tin và điều khiển phiên.
 #### 2. Lớp Transport
 Chịu trách nhiệm quản lý việc truyền dữ liệu, kiểm tra lỗi, phân mảnh và lưu lượng.
-#### 3. Lớp Internetwork
+#### 3. Lớp Internet
 Chịu trách nhiệm giải quyết các vần đề về truyền tải gói tin trong mạng đơn hay liên mạng.
-#### 4. Lớp Network Interface
+#### 4. Lớp Network Access
 Truyền gói tin từ tầng mạng tới các máy chủ khác nhau.
+
+
+
+
+## Cấu trúc các gói tin
+
+### Gói tin TCP
