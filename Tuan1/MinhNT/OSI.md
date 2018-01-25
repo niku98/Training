@@ -104,7 +104,7 @@ Do mô hình TCP/IP không có tầng nào nằm giữa tầng ứng dụng và 
 Trong bộ giao thức TCP/IP, TCP là tầng trung gian giữa giao thức IP bên dưới và một ứng dụng bên trên. Các ứng dụng thường cần các kết nối đáng tin cậy kiểu đường ống để liên lạc với nhau, trong khi đó, giao thức IP không cung cấp những dòng kiểu đó, mà chỉ cung cấp dịch vụ chuyển gói tin không đáng tin cậy. TCP làm nhiệm vụ của tầng giao vận trong mô hình OSI đơn giản của các mạng máy tính.
 
 
-** Một gói tin TCP bao gồm 2 phần: header và dữ liệu. **
+**Một gói tin TCP bao gồm 2 phần: header và dữ liệu.**
 
 Phần header có 11 trường trong đó 10 trường là bắt buộc, trường thứ 11 là optional.
 
