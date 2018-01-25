@@ -72,9 +72,10 @@ Tại máy tính nhận, lớp này lại chuyển từ định dạng chung san
 - Nén dữ liệu để giảm lượng giữ liệu truyền trên mạng.
 - Mã hóa và giải mã dữ liệu để đảm bảo sự bảo mật trên mạng.
 
-# Tầng 7: Tầng ứng dụng (Application layer):
+# Tầng 7: Tầng ứng dụng (Application layer): 
 
 Đây là tầng gần với người sử dụng nhất. Nó cung cấp phương tiện cho người dùng truy nhập các thông tin và dữ liệu trên mạng thông qua chương trình ứng dụng. Tầng này là giao diện chính để người dùng tương tác với chương trình ứng dụng, và qua đó với mạng.
+
 --------------------------------------------------------------------
 
 # Day 2: Các tầng của mô hình TCP/IP.
@@ -103,7 +104,7 @@ Trong bộ giao thức TCP/IP, TCP là tầng trung gian giữa giao thức IP b
 
 
 Một gói tin TCP bao gồm 2 phần: header và dữ liệu.
-++ Phần header có 11 trường trong đó 10 trường là bắt buộc, trường thứ 11 là optional.
+ Phần header có 11 trường trong đó 10 trường là bắt buộc, trường thứ 11 là optional.
 (ảnh minh họa)
 
 1. Source port: Số hiệu của cổng tại máy tính gửi.
