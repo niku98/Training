@@ -104,9 +104,8 @@ Do mô hình TCP/IP không có tầng nào nằm giữa tầng ứng dụng và 
 Trong bộ giao thức TCP/IP, TCP là tầng trung gian giữa giao thức IP bên dưới và một ứng dụng bên trên. Các ứng dụng thường cần các kết nối đáng tin cậy kiểu đường ống để liên lạc với nhau, trong khi đó, giao thức IP không cung cấp những dòng kiểu đó, mà chỉ cung cấp dịch vụ chuyển gói tin không đáng tin cậy. TCP làm nhiệm vụ của tầng giao vận trong mô hình OSI đơn giản của các mạng máy tính.
 
 
-**Một gói tin TCP bao gồm 2 phần: header và dữ liệu.**
-
-Phần header có 11 trường trong đó 10 trường là bắt buộc, trường thứ 11 là optional.
+**Một gói tin TCP bao gồm 2 phần: header và dữ liệu.** Phần header có 11 trường trong đó 10 trường là bắt buộc, trường thứ 11 là optional.
+![](https://imgur.com/gi4FmmK)
 
 **1. Source port**: Số hiệu của cổng tại máy tính gửi.
 **2. Destination port**: Số hiệu của cổng tại máy tính nhận.
@@ -149,6 +148,7 @@ Giá trị của trường này là thông tin dành cho các tầng trên (tron
 
 Phần header của UDP chỉ chứa 4 trường dữ liệu, trong đó có 2 trường là tùy chọn.
 
+![](https://imgur.com/EAQ3n3H)
 **1. Source port (optional):**
 - Trường này xác định cổng của người gửi thông tin và có ý nghĩa nếu muốn nhận thông tin phản hồi từ người nhận. Nếu không dùng đến thì đặt nó bằng 0.
 
@@ -165,6 +165,7 @@ Do thiếu tính tin cậy, các ứng dụng UDP nói chung phải chấp nhậ
 
 -----------------------------------------------------------------
 # 2.3) ICMP
+![](https://i.imgur.com/pQ8xTrQ.png)
 Ví dụ gói tin ICMP type 0 code 1 có ý nghĩa là Destination Unreacheable:
 
 **1. Type:**
@@ -188,6 +189,7 @@ Ví dụ gói tin ICMP type 0 code 1 có ý nghĩa là Destination Unreacheable:
 **Cấu trúc:**  
   
 **1. Version**:
+![](https://imgur.com/gthhskf)
 
 - Xác định phiên bản của IP được sử dụng để tạo ra gói tin. Mục đích của nó nhằm đảm bảo khả năng tương thích giữa các thiết bị có thể chạy trên các phiên bản khác nhau của IP.
 
