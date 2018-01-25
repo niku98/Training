@@ -186,8 +186,8 @@ Ví dụ gói tin ICMP type 0 code 1 có ý nghĩa là Destination Unreacheable:
 > Dữ liệu được truyền trong qua một mạng Internet bằng cách sử dụng IP được thực hiện trong các tin nhắn được gọi là IP datagram.
 
 **Cấu trúc:**  
-
-**1. Version:**
+  
+**1. Version**:
 
 - Xác định phiên bản của IP được sử dụng để tạo ra gói tin. Mục đích của nó nhằm đảm bảo khả năng tương thích giữa các thiết bị có thể chạy trên các phiên bản khác nhau của IP.
 
@@ -217,12 +217,12 @@ Bit 2:
 **7.  Phân mảnh bù đắp (Fragment offset-13 bit):**
 - Chỉ vị trí của đoạn trong datagram, tính theo đơn vị 64bits, có nghĩa là trừ đoạn cuối cùng ra thì mỗi đoạn phải chứa một vùng dữ liệu có độ dài là bội của 64 bits; dùng để ghép lại các mảng datagram với nhau.
 
-**8. Time to live (TTL - 8bit):** Giải quyết vấn đề gói tin bị lặp vô hạn trên mạng.
+**8. Time to live (TTL - 8bit)**: Giải quyết vấn đề gói tin bị lặp vô hạn trên mạng.
 
 - giá trị này được đặt lúc bắt đầu gửi gói tin, giảm dần khi đi qua 1 router.
 - Gói tin này sẽ bị hủy khi giá trị =0 mà vẫn chưa đến đích.
 
-**9. Protocol (8bit):** Chỉ ra giao thức lớp trên, chẳng hạn như TCP hay UDP.
+**9. Protocol (8bit)**: Chỉ ra giao thức lớp trên, chẳng hạn như TCP hay UDP.
 
 **10. Header Checksum:** 
 - Mã kiểm soát lỗi sử dụng phương pháp CRC (cyclic redundancy check) dùng để đảm bảo thông tin về gói dữ liệu được truyền đi một cách chính xác. Nếu việc kiểm tra này thất bại, gói dữ liệu sẽ bị hủy bỏ tại nơi xác định lỗi.
