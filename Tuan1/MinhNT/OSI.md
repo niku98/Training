@@ -105,6 +105,7 @@ Trong bộ giao thức TCP/IP, TCP là tầng trung gian giữa giao thức IP b
 
 
 ** Một gói tin TCP bao gồm 2 phần: header và dữ liệu. **
+
 Phần header có 11 trường trong đó 10 trường là bắt buộc, trường thứ 11 là optional.
 
 **1. Source port**: Số hiệu của cổng tại máy tính gửi.
@@ -140,61 +141,67 @@ Phần header có 11 trường trong đó 10 trường là bắt buộc, trườ
 Giá trị của trường này là thông tin dành cho các tầng trên (trong mô hình 7 lớp OSI). Thông tin về giao thức của tầng trên không được chỉ rõ trong phần header mà phụ thuộc vào cổng được chọn.
 
 ----------------------------------------------------------------
-2.2) Cấu trúc gói tin UDP:
-UDP cung cấp một giao diện rất đơn giản giữa tầng mạng bên dưới và tầng phiên làm việc hoặc tầng ứng dụng phía trên. Không đảm bảo tính tin cậy khi truyền dữ liệu và không có cơ chế phục hồi dữ liệu.
-Do có ít chức năng nên UDP có xu hướng chạy nhanh hơn so với TCP. Nó thường được sử dụng cho các ứng dụng đòi hỏi độ tin cậy không cao.
+# 2.2) Cấu trúc gói tin UDP:
+
+>UDP cung cấp một giao diện rất đơn giản giữa tầng mạng bên dưới và tầng phiên làm việc hoặc tầng ứng dụng phía trên. Không đảm bảo tính tin cậy khi truyền dữ liệu và không có cơ chế phục hồi dữ liệu.Do có ít chức năng nên UDP có xu hướng chạy nhanh hơn so với TCP. Nó thường được sử dụng cho các ứng dụng đòi hỏi độ tin cậy không cao.
+
 ++ Phần header: Gồm 16 bit source port, 16 bit des port chứa thông tin về địa chỉ cổng nguồn, cổng đích, độ dài của gói và checksum.
 
 Phần header của UDP chỉ chứa 4 trường dữ liệu, trong đó có 2 trường là tùy chọn.
 
-1. Source port (optional):
+**1. Source port (optional):**
 - Trường này xác định cổng của người gửi thông tin và có ý nghĩa nếu muốn nhận thông tin phản hồi từ người nhận. Nếu không dùng đến thì đặt nó bằng 0.
 
-2. Destination port:
+**2. Destination port:**
 - Trường này xác định cổng nhận thông tin, và trường này là cần thiết.
 
-3. Length:
+**3. Length:**
 - Trường có độ dài 16 bit xác định chiều dài của toàn bộ datagram: phần header và dữ liệu. Chiều dài tối thiểu là 8 byte khi gói tin không có dữ liệu, chỉ có header.
 
-4. Checksum (optional): 
+**4. Checksum (optional):** 
 16 bit dùng cho việc kiểm tra lỗi của phần header và dữ liệu.
 
 Do thiếu tính tin cậy, các ứng dụng UDP nói chung phải chấp nhận mất mát, lỗi hoặc trùng dữ liệu. 
 
 -----------------------------------------------------------------
-2.3) ICMP
+# 2.3) ICMP
 Ví dụ gói tin ICMP type 0 code 1 có ý nghĩa là Destination Unreacheable:
-1. Type:
+
+**1. Type:**
 - Cho biết định dạng gói tin, có 8 bit dành cho TYPE ICMP vậy nếu tính tổng có khoảng 255 dạng ICMP nhưng chỉ có 8 dạng hay dùng nhất.
-2. Code:
+
+**2. Code:**
 - Cho biết thông tin chi tiết về dạng dói tin đó. Một gói tin ICMP được hiểu là "Destination Unreacchable" sẽ được thiết lập có code từ 1 tới 15.
-3. Checksum:
+
+**3. Checksum:**
 - Ý nghĩa sử dụng để tính toán tổng cộng gói Header + data của gói ICMP.
-4. ID:
+
+**4. ID:**
 - Thiết lập có ý nghĩa cho dạng Echo Reply.
-5. Sequence:
+
+**5. Sequence:**
 - Ý nghĩa bao gồm các thông số cho quá trình trả lời Echo Reply.
 -----------------------------------------------------------------
-2.4) Cấu trúc gói tin IP datagram:
-Dữ liệu được truyền trong qua một mạng Internet bằng cách sử dụng IP được thực hiện trong các tin nhắn được gọi là IP datagram.
+# 2.4) Cấu trúc gói tin IP datagram:
+> Dữ liệu được truyền trong qua một mạng Internet bằng cách sử dụng IP được thực hiện trong các tin nhắn được gọi là IP datagram.
 
-Cấu trúc:
-1. Version: 
+**Cấu trúc:**
+**1. Version: **
 - Xác định phiên bản của IP được sử dụng để tạo ra gói tin. Mục đích của nó nhằm đảm bảo khả năng tương thích giữa các thiết bị có thể chạy trên các phiên bản khác nhau của IP.
 
-2. Internet Header Length (4 bit): 
+**2. Internet Header Length (4 bit):** 
 - Định chiều dài của tiêu đề IP, tính theo đơn vị word 32 bits. Nếu không có trường này thì độ dài mặc định của phần tiêu đề là 5 từ.
 
-3. Type of Service (8bit):
+**3. Type of Service (8bit):**
 - Được thiết kế để mang thông tin để cung cấp chất lượng của các dịch vụ, chẳng hạn như phân phối ưu tiên cho IP Datagram.
 
-4. Total Length 16bit: 
+**4. Total Length 16bit:** 
 - Chỉ định tổng chiều dài của gói tin IP. Total Length = Length of Header + Length of Data.
 
-5.  Identification 16bit:
+**5.  Identification 16bit:**
 - Dùng để định danh duy nhất cho một datagram trong khoảng thời gian nó vẫn còn trên liên mạng, đây là một số nguyên.
 
-6. Flags (3 bit): 
+**6. Flags (3 bit):** 
 - Flags kiểm soát một gói tin bị phân mảnh, theo cấu trúc sau:
 0	DF 	 MF
 Bit 0: reserved chưa sử dụng luôn lấy giá trị 0.
@@ -205,25 +212,25 @@ Bit 2:
 + MF=0: Đây là đoạn cuối cùng.
 + MF=1: Đây chưa phải đoạn cuối cùng, còn đoạn khác phía sau.
 
-7.  Phân mảnh bù đắp (Fragment offset-13 bit):
+**7.  Phân mảnh bù đắp (Fragment offset-13 bit):**
 - Chỉ vị trí của đoạn trong datagram, tính theo đơn vị 64bits, có nghĩa là trừ đoạn cuối cùng ra thì mỗi đoạn phải chứa một vùng dữ liệu có độ dài là bội của 64 bits; dùng để ghép lại các mảng datagram với nhau.
 
-8. Time to live (TTL - 8bit): Giải quyết vấn đề gói tin bị lặp vô hạn trên mạng.
+** 8. Time to live (TTL - 8bit): ** Giải quyết vấn đề gói tin bị lặp vô hạn trên mạng.
 - giá trị này được đặt lúc bắt đầu gửi gói tin, giảm dần khi đi qua 1 router.
 - Gói tin này sẽ bị hủy khi giá trị =0 mà vẫn chưa đến đích.
 
-9. Protocol (8bit): Chỉ ra giao thức lớp trên, chẳng hạn như TCP hay UDP.
+**9. Protocol (8bit): **Chỉ ra giao thức lớp trên, chẳng hạn như TCP hay UDP.
 
-10. Header Checksum: 
+**10. Header Checksum:** 
 - Mã kiểm soát lỗi sử dụng phương pháp CRC (cyclic redundancy check) dùng để đảm bảo thông tin về gói dữ liệu được truyền đi một cách chính xác. Nếu việc kiểm tra này thất bại, gói dữ liệu sẽ bị hủy bỏ tại nơi xác định lỗi.
 - Giao thức IP không có cơ chế Error Control cho dữ liệu truyền đi, không có cơ chế kiểm soát luồng dữ liệu (flow control).
 
-11. Source address (32 bit): Địa chỉ trạm nguồn.
+**11. Source address (32 bit)**: Địa chỉ trạm nguồn.
 
-12. Destination Address (32 bit): địa chỉ trạm đích.
+**12. Destination Address (32 bit)**: địa chỉ trạm đích.
 
-13. Option (độ dài thay đổi): sử dụng trong một số trường hợp, bao gồm bảo mật, chức năng định tuyến đặc biệt.
+**13. Option (độ dài thay đổi)**: sử dụng trong một số trường hợp, bao gồm bảo mật, chức năng định tuyến đặc biệt.
 
-14. Padding (độ dài thay đổi): Các số 0 được bổ sung vào field này để đảm bảo IP Header luôn là bội số của 32 bit.
+**14. Padding (độ dài thay đổi)**: Các số 0 được bổ sung vào field này để đảm bảo IP Header luôn là bội số của 32 bit.
 
-15. Data (độ dài thay đổi): Vùng dữ liệu có độ dài là bội của 8 bít, tối đa 65535 bytes.
+**15. Data (độ dài thay đổi)**: Vùng dữ liệu có độ dài là bội của 8 bít, tối đa 65535 bytes.
