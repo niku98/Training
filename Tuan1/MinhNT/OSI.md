@@ -23,7 +23,7 @@ Mô hình OSI phân chia chức năng của một giao thức ra thành một ch
 
 - Thiết lập hoặc ngắt mạch kết nối điện với một môi trường truyền dẫn phương tiện truyền thông.
 - Tham gia vào quy trình mà trong đó các tài nguyên truyền thông được chia sẻ hiệu quả giữa nhiều người dùng.
-- Điều chế hoặc biến đổi giữa BIỂU DIỄN GIỮ LIỆU SỐ của các thiết bị người dùng và các tín hiệu tương ứng được truyền qua kênh truyền thông.
+- Điều chế hoặc biến đổi giữa BIỂU DIỄN DỮ LIỆU SỐ của các thiết bị người dùng và các tín hiệu tương ứng được truyền qua kênh truyền thông.
 
 
 # Tầng 2: Data-link layer (Tầng liên kết dữ liệu):
@@ -62,7 +62,7 @@ Tầng này hỗ trợ hoạt động từ duplex (đơn công) - half duplex đ
 
 Tầng này có khả năng ngắt các phiên giao dịch và kiểm tra/phục hồi phiên.
 
-#Tầng 6: Presentation Layer:
+# Tầng 6: Presentation Layer:
 **Chức năng:**  
 Lớp này trên máy tính truyền dữ liệu đảm nhiệm vai trò dịch dữ liệu được gửi từ tầng application sang định dạng chung.  
 Tại máy tính nhận, lớp này lại chuyển từ định dạng chung sang định dạng của tầng application.
@@ -73,24 +73,25 @@ Tại máy tính nhận, lớp này lại chuyển từ định dạng chung san
 - Mã hóa và giải mã dữ liệu để đảm bảo sự bảo mật trên mạng.
 
 # Tầng 7: Tầng ứng dụng (Application layer):
+
 Đây là tầng gần với người sử dụng nhất. Nó cung cấp phương tiện cho người dùng truy nhập các thông tin và dữ liệu trên mạng thông qua chương trình ứng dụng. Tầng này là giao diện chính để người dùng tương tác với chương trình ứng dụng, và qua đó với mạng.
 --------------------------------------------------------------------
 
-#Day 2: Các tầng của mô hình TCP/IP.
+# Day 2: Các tầng của mô hình TCP/IP.
 
-#Tầng 1: Network Access Layer:
+# Tầng 1: Network Access Layer:
 Tầng truy nhập mạng bao gồm các giao thức mà nó cung cấp khả năng truy nhập đến một kết nối mạng. 
 Tại tầng này, hệ thống giao tiếp với rất nhiều kiểu mạng khác nhau, cung cấp các trình điều khiển để tương tác với các thiết bị phần cứng ví dụ như Token Ring, Ethernet, FDDI… 
 
-#Tầng 2: Internet Layer:
+# Tầng 2: Internet Layer:
 Nhiệm vụ của tầng mạng trên mô hình TCP/IP là giải quyết vấn đề dẫn các gói tin đi qua các mạng để đến đúng đích mong muốn. Vì vậy tại tầng này bao gồm các thủ tục cần thiết giữa các hosts và gateways để di chuyển các gói giữa các mạng khác nhau. Một gateway kết nối hai mạng, và sử dụng kết nối mạng bao gồm IP ( Internet Protocol ), ICMP ( Internet Control Message Protocol ).
 
-#Tầng 3: Transport Layer:
+# Tầng 3: Transport Layer:
 Cũng giống với tầng vận chuyển của mô hình OSI, tầng vận chuyển làm nhiệm vụ phân nhỏ các gói tin có kích thước lớn khi gửi và tập hợp lại khi nhận, đảm bảo tính toàn vẹn cho dữ liệu (không lỗi,không mất, không lặp, đúng thứ tự).
 
 Một giao thức đầu vào tại đây cung cấp một kết nối logic giữa các thực thể cấp cao.Các dịch vụ có  thể bao gồm việc điều khiển lỗi và điều khiển luồng. 
 
-#Tầng 4: Application Layer:
+# Tầng 4: Application Layer:
 Tầng này bao gồm các giao thức cấp cao mà chúng được sử dụng để cung cấp các giao diện với người sử dụng hoặc các ứng dụng. 
 Do mô hình TCP/IP không có tầng nào nằm giữa tầng ứng dụng và tầng vận chuyển , nên tầng ứng dụng của mô hình TCP/IP bao gồm cả các giao thức hoạt động như tầng trình diễn và phiên trong mô hình OSI.
 
