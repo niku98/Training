@@ -72,7 +72,7 @@ Bao gồm hai phần:
 </ul>
 </li>
 <li> Window: Số byte có thể nhận bắt đầu từ giá trị của trường báo nhận (ACK) </li>
-<li> Checksum: Số byte có thể nhận bắt đầu từ giá trị của trường báo nhận (ACK) </li>
+<li> Checksum: Số byte có thể nhận bắt đầu từ giá trị của trường báo nhận (ACK). Dùng cho việc kiểm tra lỗi của phần header và phần dữ liệu </li>
 <li>  Options: Đây là trường tùy chọn. Nếu có thì độ dài là bội số của 32 bit. </li>
 </li>
 </ul>
@@ -84,5 +84,6 @@ Giá trị của trường này là thông tin dành cho các tầng trên (tron
 <ul>
 <li>Source Port: xác định cổng của người gửi thông tin và  nhận thông tin phản hồi từ người nhận. Nếu không dùng đến thì đặt nó bằng 0.</li>
 <li>Destination Port: Trường xác định cổng nhận thông tin, và trường này là cần thiết.</li>
-<li>LengthTrường có độ dài 16 bit xác định chiều dài của toàn bộ datagram: phần header và dữ liệu. Chiều dài tối thiểu là 8 byte khi gói tin không có dữ liệu, chỉ có header.</li>
+<li>Length: Trường có độ dài 16 bit xác định chiều dài của toàn bộ datagram: phần header và dữ liệu. Chiều dài tối thiểu là 8 byte khi gói tin không có dữ liệu, chỉ có header.</li>
+<li>Checksum: Kiểm tra lỗi của phần header và đata.</li>
 </ul>
