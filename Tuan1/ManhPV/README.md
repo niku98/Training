@@ -55,34 +55,29 @@ Bao gồm hai phần:
 #### Header:
 ![](http://www.informit.com/content/images/chap3_0672323516/elementLinks/03table01.gif)
 <br/>
-<ul>
-	<li> Source port: Cổng tại máy gửi</li>
-	<li> Destination port: Cổng tại máy nhận </li>
-	<li> Sequence Number: Nếu cờ SYN bật thì nó là số thứ tự gói ban đầu và byte đầu tiên được gửi có số thứ tự này cộng thêm 1. Nếu không có cờ SYN thì đây là số thứ tự của byte đầu tiên. </li>
-	<li> Acknowledgement number: Nếu cờ ACK bật thì giá trị của trường chính là số thứ tự gói tin tiếp theo mà bên nhận cần. </li>
-	<li> Data offset: Trường có độ dài 4 bit quy định độ dài của phần header (tính theo đơn vị từ 32 bit). Phần header có độ dài tối thiểu là 5 từ (160 bit) và tối đa là 15 từ (480 bit). </li>
-	<li> Reserved</li>
-<li> Flag
-<ul>
-<li> URG: cho trường Urgent pointer </li>
-<li> ACK: cho trường Acknowledgement </li>
-<li> PSH: Hàm push</li>
-<li> RST: Thiết lập lại đường truyền </li>
-<li> FIN: Không gửi thêm số liệu </li>
-</ul>
-</li>
-<li> Window: Số byte có thể nhận bắt đầu từ giá trị của trường báo nhận (ACK) </li>
-<li> Checksum: Số byte có thể nhận bắt đầu từ giá trị của trường báo nhận (ACK). Dùng cho việc kiểm tra lỗi của phần header và phần dữ liệu </li>
-<li>  Options: Đây là trường tùy chọn. Nếu có thì độ dài là bội số của 32 bit. </li>
-</ul>
+- **Source port:** Cổng tại máy gửi
+- **Destination port:** Cổng tại máy nhận
+- **Sequence Number:** Nếu cờ SYN bật thì nó là số thứ tự gói ban đầu và byte đầu tiên được gửi có số thứ tự này cộng thêm 1. Nếu không có cờ SYN thì đây là số thứ tự của byte đầu tiên.
+ **Acknowledgement number:** Nếu cờ ACK bật thì giá trị của trường chính là số thứ tự gói tin tiếp theo mà bên nhận cần.
+- **Data offset:** Trường có độ dài 4 bit quy định độ dài của phần header (tính theo đơn vị từ 32 bit). Phần header có độ dài tối thiểu là 5 từ (160 bit) và tối đa là 15 từ (480 bit).
+- Reserved
+- Flag
+	- **URG:** cho trường Urgent pointer
+	- **ACK:** cho trường Acknowledgement
+	- **PSH:** Hàm push
+	- **RST:** Thiết lập lại đường truyền
+	- **FIN:** Không gửi thêm số liệu
+- **Window:** Số byte có thể nhận bắt đầu từ giá trị của trường báo nhận (ACK)
+- **Checksum:** Số byte có thể nhận bắt đầu từ giá trị của trường báo nhận (ACK). Dùng cho việc kiểm tra lỗi của phần header và phần dữ liệu
+- **Options:** Đây là trường tùy chọn. Nếu có thì độ dài là bội số của 32 bit.
+
 #### Data:
 Giá trị của trường này là thông tin dành cho các tầng trên (trong mô hình 7 lớp OSI). Thông tin về giao thức của tầng trên không được chỉ rõ trong phần header mà phụ thuộc vào cổng được chọn.
 <br/>
 ### Gói tin UDP
 ####Header:
-<ul>
-<li>Source Port: xác định cổng của người gửi thông tin và  nhận thông tin phản hồi từ người nhận. Nếu không dùng đến thì đặt nó bằng 0.</li>
-<li>Destination Port: Trường xác định cổng nhận thông tin, và trường này là cần thiết.</li>
-<li>Length: Trường có độ dài 16 bit xác định chiều dài của toàn bộ datagram: phần header và dữ liệu. Chiều dài tối thiểu là 8 byte khi gói tin không có dữ liệu, chỉ có header.</li>
-<li>Checksum: Kiểm tra lỗi của phần header và đata.</li>
-</ul>
+
+- **Source Port:** xác định cổng của người gửi thông tin và  nhận thông tin phản hồi từ người nhận. Nếu không dùng đến thì đặt nó bằng 0.
+- **Destination Port:** Trường xác định cổng nhận thông tin, và trường này là cần thiết.
+- **Length:** Trường có độ dài 16 bit xác định chiều dài của toàn bộ datagram: phần header và dữ liệu. Chiều dài tối thiểu là 8 byte khi gói tin không có dữ liệu, chỉ có header.
+- **Checksum:** Kiểm tra lỗi của phần header và đata.
