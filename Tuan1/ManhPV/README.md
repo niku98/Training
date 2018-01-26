@@ -75,7 +75,7 @@ Bao gồm hai phần:
 Giá trị của trường này là thông tin dành cho các tầng trên (trong mô hình 7 lớp OSI). Thông tin về giao thức của tầng trên không được chỉ rõ trong phần header mà phụ thuộc vào cổng được chọn.
 <br/>
 ### Gói tin UDP
-####Header:
+#### Header:
 
 - **Source Port:** xác định cổng của người gửi thông tin và  nhận thông tin phản hồi từ người nhận. Nếu không dùng đến thì đặt nó bằng 0.
 - **Destination Port:** Trường xác định cổng nhận thông tin, và trường này là cần thiết.
