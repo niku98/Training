@@ -99,7 +99,7 @@ Do mô hình TCP/IP không có tầng nào nằm giữa tầng ứng dụng và 
 --------------------------------------------------------------
 # 2.1) Cấu trúc gói tin TCP:
 
-> TCP là một giao thức cần phải thiết lập liên kết locgic trước khi có thể truyền dữ liệu. Giao thức này đảm bảo chuyển giao dữ liệu tới nơi nhận một cách đáng tin cậy và đúng thứ tự. TCP còn phân biệt giữa dữ liệu của nhiều ứng dụng đồng thời chạy trên cùng một máy chủ. 
+> TCP là một giao thức cần phải thiết lập liên kết logic trước khi có thể truyền dữ liệu. Giao thức này đảm bảo chuyển giao dữ liệu tới nơi nhận một cách đáng tin cậy và đúng thứ tự. TCP còn phân biệt giữa dữ liệu của nhiều ứng dụng đồng thời chạy trên cùng một máy chủ. 
 
 Trong bộ giao thức TCP/IP, TCP là tầng trung gian giữa giao thức IP bên dưới và một ứng dụng bên trên. Các ứng dụng thường cần các kết nối đáng tin cậy kiểu đường ống để liên lạc với nhau, trong khi đó, giao thức IP không cung cấp những dòng kiểu đó, mà chỉ cung cấp dịch vụ chuyển gói tin không đáng tin cậy. TCP làm nhiệm vụ của tầng giao vận trong mô hình OSI đơn giản của các mạng máy tính.
 
@@ -108,16 +108,21 @@ Trong bộ giao thức TCP/IP, TCP là tầng trung gian giữa giao thức IP b
 ![](https://imgur.com/gi4FmmK)
 
 **1. Source port**: Số hiệu của cổng tại máy tính gửi.
+
 **2. Destination port**: Số hiệu của cổng tại máy tính nhận.
+
 **3. Sequence number**: 
 - Nếu cờ SYN bật thì nó là số thứ tự gói ban đầu và byte đầu tiên được gửi có số thứ tự này cộng thêm 1.
 - Nếu không có cờ SYN thì đây là số thứ tự của byte đầu tiên.
 
 **4. Acknowledgment number**:
 - Nếu cờ ACK bật thì giá trị của trường chính là số thứ tự gói tin tiếp theo mà bên nhận cần.
+
 **5. Data offset**:
 - Trường có độ dài 4 bit quy định độ dài của phần header (tính theo đơn vị từ 32 bit). Phần header có độ dài tổi thiểu là 5 từ ~ 160bit và tối đa là 15 từ ~ 480 bit.
+
 **6. Reserved**: Sử dụng trong tương lai và có giá trị là 0.
+
 **7. Flags**: bao gồm 6 cờ.
 - URG: dành cho trường Urgent Pointer.
 - ACK: dành cho trường Acknowledgement.
@@ -125,8 +130,10 @@ Trong bộ giao thức TCP/IP, TCP là tầng trung gian giữa giao thức IP b
 - RST: Thiết lập lại đường truyền.
 - SYN: Đồng bộ lại số thứ tự. Chỉ gói tin đầu tiên được gửi từ mỗi đầu cho đến khi chúng được đặt cờ; một số cờ và các trường khác thay đổi ý nghĩa dựa trên cờ này, một số chỉ có giá trị khi nó được đặt, và một số khác khi nó được rõ ràng.
 - FIN: Packet cuối cùng không gửi thêm số liệu. 
+
 **8. Window size**:
 - Số byte có thể nhận bắt đầu từ giá trị của trường báo nhận (ACK).
+
 **9. Checksum**:
 - 16 bít kiểm tra cho cả phần header và dữ liệu. Kết quả thu được sau khi đảo giá trị từng bít được điền vào trường kiểm tra.
 
