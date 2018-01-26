@@ -74,7 +74,6 @@ Bao gồm hai phần:
 <li> Window: Số byte có thể nhận bắt đầu từ giá trị của trường báo nhận (ACK) </li>
 <li> Checksum: Số byte có thể nhận bắt đầu từ giá trị của trường báo nhận (ACK). Dùng cho việc kiểm tra lỗi của phần header và phần dữ liệu </li>
 <li>  Options: Đây là trường tùy chọn. Nếu có thì độ dài là bội số của 32 bit. </li>
-</li>
 </ul>
 #### Data:
 Giá trị của trường này là thông tin dành cho các tầng trên (trong mô hình 7 lớp OSI). Thông tin về giao thức của tầng trên không được chỉ rõ trong phần header mà phụ thuộc vào cổng được chọn.
