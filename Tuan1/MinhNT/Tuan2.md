@@ -1,6 +1,6 @@
 #Day 1: Tìm hiểu hoạt động các thiết bị: Firewall, Router, Switch, Load Balancer, Proxy, VPN, IDS/IPS, Application Firewall.
 ----
-##I-Firewall:
+##I-Firewall: 
 > Hệ thống Firewall sử dụng để tạo rào chắn cho một mạng cần được bảo vệ đối với những mạng khác. Hệ thống này sẽ giữ lại các gói tin đi vào và đi ra khỏi mạng này, phân tích chúng để cho phép chúng đi qua hoặc hủy bỏ dựa trên một chính sách bảo vệ mà mạng đã thiết lập từ trước. Có thể hiểu đơn giản Firewall dùng để bảo vệ một mạng của một tổ chức khi mạng này được kết nối với các mạng khác :D
 
 Firewall kiểm soát sự kết nối giữa mạng cần bảo vệ với các mạng ngoài. Mục đích của Firewall là:
@@ -129,3 +129,40 @@ Tính năng này cho phép các giao thức tầng ứng dụng hoạt động n
 
 ----
 **Những hệ thống Firewall trong thực tế:**
+
+---------------------------------------------------
+
+##II-Router: 
+>Router là thiết bị mạng hoạt động ở tầng 3 của mô hình OSI-tầng network. Router được chế tạo với 2 mục đích chính:
+- Phân cách các mạng máy tính thành các segment riêng biệt để giảm hiện tượng đụng độ, giảm broadcast hay thực hiện chức năng bảo mật.
+- Kết nối các mạng máy tính hay kết nối các user với mạng máy tính ở các khoảng cách xa với nhau thông qua các đường truyền thông như điện thoại.
+
+Do hoạt động ở tầng thứ 3 của mô hình OSI, router sẽ hiểu được các protocol quyết định phương thức truyền dữ liệu. Các địa chỉ mà router hiểu là các địa chỉ giả được quy định bởi các protocol. Tùy theo cấu hình, router quyết định phương thức và đích đến của việc chuyển các packet từ nơi này sang nơi khác, theo các bước sau:
+- Đọc packet.
+- Gỡ bỏ dạng format quy định bởi protocol của nơi gửi.
+- Thay thế phần gỡ bỏ đó bằng dạng format của protocol của đích đến.
+- Cập nhật thông tin về việc chuyển dữ liệu: địa chỉ, trạng thái của nơi gửi, nơi nhận.
+- Gửi packet đến nơi nhận qua đường truyền tối ưu nhất.
+
+**Nguyên tắc hoạt động của Router-ARP Protocol**
+Như ta đã biết tại tầng network của mô hình OSI, chúng ta thường sử dụng các loại địa chỉ mang tính quy ước như IP, IPX,...Các địa chỉ này là các địa chỉ có hướng, nghĩa là chúng được phân thành hai phần riêng biệt là phần địa chỉ network và phần địa chỉ host.
+Cách đánh số địa chỉ như vậy nhằm giúp cho việc tìm ra các đường kết nối từ hệ thống mạng này sang hệ thống mạng khác được dễ dàng hơn, có thể thay đổi theo tùy ý người sử dụng. Trên thực tế, các card mạng chỉ có thể kết nối với nhau theo địa chỉ MAC, địa chỉ cố định và duy nhất của phần cứng. Do vậy ta phải có một phương pháp để chuyển đổi các dạng địa chỉ này qua lại với nhau. Từ đó ta có giao thức phân giải địa chỉ: Address Resolution Protocol (ARP).
+
+> ARP là một protocol dựa trên nguyên tắc: Khi một thiết bị mạng muốn biết địa chỉ MAC của một thiết bị mạng nào đó mà nó đã biết địa chỉ ở tầng network (IP, IPX…); nó sẽ gửi một ARP request bao gồm địa chỉ MAC address của nó và địa chỉ IP của thiết bị mà nó cần biết MAC address trên toàn bộ một miền broadcast. 
+Mỗi một thiết bị nhận được request này sẽ so sánh địa chỉ IP trong request với địa chỉ tầng network của mình. Nếu trùng địa chỉ thì thiết bị đó phải gửi ngược lại cho thiết bị gửi ARP request một packet (trong đó có chứa địa chỉ MAC của mình).
+
+Trong một hệ thống mạng đơn giản, ví dụ như máy A muốn gửi packet đến máy B và nó chỉ biết được địa chỉ IP của máy B. Khi đó máy A sẽ phải gửi một ARP broadcast cho toàn mạng để hỏi xem “địa chỉ MAC của máy có địa chỉ IP này là gì” Khi máy B nhận được broadcast này, có sẽ so sánh địa chỉ IP trong packet này với địa chỉ IP của nó. Nhận thấy địa chỉ đó là địa chỉ của mình, máy B sẽ gửi lại một packet cho máy B trong đó có chứa địa chỉ MAC của B. Sau đó máy A mới bắt đầu truyền packet cho B
+
+https://imgur.com/a/hTDST
+
+Trong một môi trường phức tạp hơn: hai hệ thống mạng gắn với nhau thông qua một router C. Máy A thuộc mạng A muốn gửi packet đến máy B thuộc mạng B. Do các broadcast không thể truyền qua router nên khi đó máy A sẽ xem router C như một cầu nối để truyền dữ liệu. 
+Trước đó, máy A sẽ biết được địa chỉ IP của router C (port X) và biết được rằng để truyền packet tới B phải đi qua C. Tất cả các thông tin như vậy sẽ
+được chứa trong một bảng gọi là bảng routing (routing table). Bảng routing table theo cơ chế này được lưu giữ trong mỗi máy. Routing table chứa thông tin về các gateway để truy cập vào một hệ thống mạng nào đó. Ví dụ trong trường hợp trên trong bảng sẽ chỉ ra rằng để đi tới LAN B phải qua port X của router C. Routing table sẽ có chứa địa chỉ IP của port X. Quá trình truyền dữ liệu theo từng bước sau:
+- Máy A gửi một ARP request (broadcast) để tìm địa chỉ MAC của port X.
+- Router C trả lời, cung cấp cho máy A địa chỉ MAC của port X.
+- Máy A truyền packet đến port X của router.
+- Router nhận được packet từ máy A, chuyển packet ra port Y của router. Trong packet có chứa địa chỉ IP của máy B.
+- Router sẽ gửi ARP request để tìm địa chỉ MAC của máy B.
+- Máy B sẽ trả lời cho router biết địa chỉ MAC của mình.
+- Sau khi nhận được địa chỉ MAC của máy B, router C gửi packet của A đến B.
+https://imgur.com/a/kY0eV
