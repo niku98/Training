@@ -1,7 +1,7 @@
-# 1. Sử dụng tcpdump để bắt gói tin
+# 1. Sử dụng tcpdump để bắt và phân tích gói tin
 
 ## 1.1 Giới thiệu:
-`tcpdump:` 
+**`tcpdump:`**
 - Là công cụ CLI để phân tích các gói dữ liệu mạng
 - Cho phép chặn và hiển thị các gói tin đến hoặc đi trên một mạng mà máy tính có tham gia.
 - Có thể lưu ra file và đọc bằng công cụ đồ họa Wireshark.
@@ -73,7 +73,7 @@ Ví dụ bắt `5` gói tin qua cổng `443` trên card `eth0` :
 
 ### 1.2.7. Bắt theo địa chỉ nguồn hoặc đích
 
-Địa chỉ nguồn: 
+- ***Địa chỉ nguồn:***
 
 ```
  tcpdump -i <INTERFACE> src <source_IP>
@@ -82,12 +82,75 @@ Ví dụ bắt `5` gói tin từ IP nguồn `10.1.62.65` trên card `eth0` :
 
 <img src="https://i.imgur.com/7Wmgb1p.png" />
 
-Địa chỉ đích: 
+- ***Địa chỉ đích:*** 
 
 ```
  tcpdump -i <INTERFACE> dst <destination_IP>
 ```
 
-Ví dụ bắt `5` gói tin đên IP đích `172.217.161.174` trên card `eth0` :
+Ví dụ bắt `5` gói tin đến IP đích `172.217.161.174` trên card `eth0` :
 
 <img src="https://i.imgur.com/odjBizN.png" />
+
+ # 2. Sử dụng Wireshark để bắt và phân tích gói tin
+ 
+ ## 2.1 Giới thiệu:
+**`Wireshark:`**
+-  Là một ứng dụng phân tích dữ liệu hệ thống mạng.
+-  Có khả năng theo dõi, giám sát các gói tin theo thời gian thực
+-  Hiển thị chính xác báo cáo cho người dùng qua giao diện khá đơn giản và thân thiện.
+## 2.2 Sử dụng Wireshark:
+### 2.2.1 Mở file pcap có sẵn:
+Sử dụng Wireshark để mở file Capture1.pcap đã tạo ra sau khi bắt gói tin bằng tcpdump:
+
+<img src="https://i.imgur.com/X7MA1Wg.png" />
+
+### 2.2.2. Bắt gói tin trên Interface
+Khởi động Wireshark, chọn một card mạng. Ví dụ, bắt gói tin trên card `eth0`:
+        
+<img src="https://i.imgur.com/5OkpueL.png" />
+    
+Wireshark sẽ liên tục bắt các gói tin đến và đi qua card mạng và liệt kê lên giao diện:
+
+<img src="https://i.imgur.com/zPDYvZd.png" />
+
+Trên giao diện chính, Wireshark hiển thị các thông tin:
+- **`Packet List`** : Liệt kê các gói tin đã được capture
+
+<img src="https://i.imgur.com/kIK2Q5V.png" />
+
+- **`Packet Details`:** Hiển thị các thông số chi tiết của gọi tin được chọn
+
+<img src="https://i.imgur.com/MNWcg69.png" />
+
+- **`Packet Bytes`:** Hiển thị gói tin dưới dạng mã Hexa
+
+<img src="https://i.imgur.com/wgOHJ0J.png" />
+
+### 2.2.3. Phân tích gói tin
+Gõ tên giao thức gói tin muốn tìm lên bộ lọc, chẳng hạn `http`:
+
+<img src="https://i.imgur.com/nOHmH0K.png" />
+
+Chọn gói tin cần phần tích trong danh sách các gói tin, xem các thông số chi tiết gói tin ở phần **Packet Details**, bao gồm:
+- ***Frame:***
+
+<img src="https://i.imgur.com/X2fc2Ja.png" />
+
+- ***Source IP, Destination IP:***
+
+<img src="https://i.imgur.com/RTh4PuQ.png" />
+
+- ***Protocols:***
+
+<img src="https://i.imgur.com/vnbJMuq.png" />
+
+<img src="https://i.imgur.com/rgYwcJc.png" />
+
+<img src="https://i.imgur.com/zYu7kVc.png" />
+
+<img src="https://i.imgur.com/JgCDtsI.png" />
+
+Ở phần **Packet Bytes**, gói tin được hiển thị đày đủ ở dạng mã Hexa:
+
+<img src="https://i.imgur.com/lhVTj82.png" />
