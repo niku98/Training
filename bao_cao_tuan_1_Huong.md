@@ -1,13 +1,13 @@
 # 1. Sử dụng tcpdump để bắt và phân tích gói tin
 
-## 1.1 Giới thiệu:
+## 1.1. Giới thiệu:
 **`tcpdump:`**
 - Là công cụ CLI để phân tích các gói dữ liệu mạng
 - Cho phép chặn và hiển thị các gói tin đến hoặc đi trên một mạng mà máy tính có tham gia.
 - Có thể lưu ra file và đọc bằng công cụ đồ họa Wireshark.
 
-## 1.2 Sử dụng tcpdump:
-### 1.2.1 Xem các interface đang hoạt động:
+## 1.2. Sử dụng tcpdump:
+### 1.2.1. Xem các interface đang hoạt động:
 ```
 tcpdump -D
 ```
@@ -37,7 +37,7 @@ Sử dụng tùy chọn `-c`, chúng ta có thể giới hạn số lượng gó
 ```
 tcpdump -c n -i <INTERFACE>
 ```
-*- Với n là số gói tin cần bắt.*
+***- Với n là số gói tin cần bắt.***
 
 Ví dụ bắt `5` gói tin trên card `eth0`:
 
@@ -94,14 +94,14 @@ Ví dụ bắt `5` gói tin đến IP đích `172.217.161.174` trên card `eth0`
 
  # 2. Sử dụng Wireshark để bắt và phân tích gói tin
  
- ## 2.1 Giới thiệu:
+ ## 2.1. Giới thiệu:
 **`Wireshark:`**
 -  Là một ứng dụng phân tích dữ liệu hệ thống mạng.
 -  Có khả năng theo dõi, giám sát các gói tin theo thời gian thực
 -  Hiển thị chính xác báo cáo cho người dùng qua giao diện khá đơn giản và thân thiện.
-## 2.2 Sử dụng Wireshark:
-### 2.2.1 Mở file pcap có sẵn:
-Sử dụng Wireshark để mở file Capture1.pcap đã tạo ra sau khi bắt gói tin bằng tcpdump:
+## 2.2. Sử dụng Wireshark:
+### 2.2.1. Mở file pcap có sẵn:
+Sử dụng Wireshark để mở file Capture1.pcap đã tạo ra sau khi bắt gói tin bằng **`tcpdump`**:
 
 <img src="https://i.imgur.com/X7MA1Wg.png" />
 
