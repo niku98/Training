@@ -37,7 +37,8 @@ Sử dụng tùy chọn `-c`, chúng ta có thể giới hạn số lượng gó
 ```
 tcpdump -c n -i <INTERFACE>
 ```
-*Với n là số gói tin cần bắt.*
+*- Với n là số gói tin cần bắt.*
+
 Ví dụ bắt `5` gói tin trên card `eth0`:
 
 <img src="https://i.imgur.com/zst4UKN.png" />
