@@ -66,7 +66,8 @@ Ngoài TCP, chúng ta có thể bắt theo UDP, IMCP,...
 ```
 tcpdump -i <INTERFACE> port <port_number> -n
 ```
-- `-n`: Hiển thị số port thay cho tên giao thức, IP thay cho Hostname
+- `-n`: Hiển thị số port thay cho tên giao thức, IP thay cho Hostname.
+
 Ví dụ bắt `5` gói tin qua cổng `443` trên card `eth0` :
 
 <img src="https://i.imgur.com/v3cXrqE.png" />
