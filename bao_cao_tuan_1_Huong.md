@@ -152,6 +152,17 @@ Chọn gói tin cần phần tích trong danh sách các gói tin, xem các thô
 
 <img src="https://i.imgur.com/JgCDtsI.png" />
 
-Ở phần **Packet Bytes**, gói tin được hiển thị đày đủ ở dạng mã Hexa:
+Ở phần **Packet Bytes**, gói tin được hiển thị đầy đủ ở dạng mã Hexa:
 
 <img src="https://i.imgur.com/lhVTj82.png" />
+
+# 3. So sánh và kết luận
+## 3.1. So sánh
+|               **tcpdump**                  |                    **Wireshark**                     |
+|--------------------------------------------|------------------------------------------------------|
+|Có khả năng quét và chặn bắt gói tin trên toàn bộ dải mạng mà host tham gia|Chỉ có thể bắt được các gói tin đi qua một interface nhất định của host|
+|Giao diện dòng lệnh gây khó khăn cho người dùng trong việc xem và phân tích gói tin|Giao diện đồ họa khiến việc hiển thị và phân tích gói tin trở nên dễ dàng|
+|Có nhiều tùy chọn bắt gói tin như: Bắt gói tin theo giao thức, port, địa chỉ nguồn hoặc đích. Có thể giới hạn số lượng gói tin được bắt| Bắt toàn bộ gói tin qua giao diện mạng cho đến khi chọn dừng bắt gói tin. Sau đó phải sử dụng bộ lọc (theo giao thức, port) để tìm kiếm gói tin|
+
+## 3.2. Kết luận
+Từ bảng so sánh trên, có thể kết luận rằng: **Nên sử dụng tcpdump để chặn bắt gói tin và ghi file pcap rồi sử dụng Wireshark để hiển thị và phân tích gói tin.**
