@@ -12,7 +12,7 @@ Mô hình OSI phân chia chức năng của một giao thức ra thành một ch
 > Lớp vật lý định nghĩa các đặc tính vật lý của mạng chẳng hạn như kết nối, cấp điện áp và thời gian.  
 
 **Tầng vật lý bao gồm:**
-
+- Sóng thu phát.
 - Hub.
 - Repeater: bộ lặp.
 - Converter: thiết bị chuyển đổi tín hiệu.
@@ -246,3 +246,12 @@ Bit 2:
 **14. Padding (độ dài thay đổi)**: Các số 0 được bổ sung vào field này để đảm bảo IP Header luôn là bội số của 32 bit.
 
 **15. Data (độ dài thay đổi)**: Vùng dữ liệu có độ dài là bội của 8 bít, tối đa 65535 bytes.
+
+----
+Bonus: So sánh TCP và UDP:
+
+TCP hoạt động theo hướng kết nối (connection-oriented). Trước khi truyền dữ liệu giữa 2 máy, nó thiết lập một kết nối giữa 2 máy theo phương thức “bắt tay 3 bước" (3-way handshake) bằng cách gửi gói tin ACK từ máy đích sang máy nhận, trong suốt quá trình truyền gói tin, máy gửi yêu cầu máy đích xác nhận đã nhận đủ các gói tin đã gửi, nếu có gói tin bị mất, máy đích sẽ yêu cầu máy gửi gửi lại, thường xuyên kiểm tra gói tin có bị lỗi hay ko, ngoài ra còn cho phép qui định số lượng gói tin được gửi trong một lần gửi (window-sizing), điều này đảm bảo máy nhận nhận được đầy đủ các gói tin mà máy gửi gửi đi, dẫn tới nó truyền dữ liệu chậm hơn UDP nhưng đáng tin cậy hơn UDP.
+
+UDP hoạt động theo hướng phi kết nối (connectionless), không yêu cầu thiết lập kết nối giữa 2 máy gửi và nhận, không có sự đảm bảo gói tin khi truyền đi cũng như không thông báo về việc mất gói tin, không kiểm tra lỗi của gói tin, dẫn tới nó truyền dữ liệu nhanh hơn TCP do cơ chế hoạt động có phần đơn giản hơn, tuy nhiên lại ko đáng tin cậy bằng TCP.
+
+TCP thường sử dụng cho các ứng mạng cần độ chính xác và tin cậy cao như mail, FTP,... Còn UDP thích hợp cho các dịch vụ hỗ trợ về mặt tốc độ nhanh như VoIP, truyền hình trực tiếp, game online,...
