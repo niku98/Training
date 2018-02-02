@@ -23,7 +23,10 @@
 		- [Ưu điểm](#firewall-advantages)
 		- [Nhược điểm](#firewall-disadvantages)
 	- [Sử dụng HTTP Proxy để vượt Firewall](#passing-firewall-ways)
+4. [Router](#router-start)
+	- [Chức năng](#router-function)
 
+<br/>-----------------------------------------------------------------------------------------------------------------------<br/>
 ## <a name="wireshark-start"></a>I/ Hướng dẫn sử dụng Wireshark để bắt và phân tích gói tin trong *Network*
 
 Đây là phần mềm được dùng để bắt các gói tin được truyền trong *Network*, từ đó ta phân tích gói tin bắt được, phục vụ cho mục đích nhất định nào đấy. *Wireshark* cũng cung cấp chức năng save, giúp ta lư lại cá gói tin đã bắt được.
@@ -73,7 +76,7 @@ Bạn có thể kiểm tra kĩ hơn các thông tin trong gói tin bằng cách 
 
 ![](https://fthmb.tqn.com/5qrzPliIm9ekuq1gy_52XMZFqY8=/768x0/filters:no_upscale()/wireshark-captured-data-panes-59512e265f9b58f0fc7b1f17.png)
 <br/><br/>
-
+<br/>-----------------------------------------------------------------------------------------------------------------------<br/>
 ## <a name="TCPDump-start"></a>II/ Hướng dẫn sử dụng TCPDump để bắt và phân tích gói tin trong *Network*
 
 ### <a name="introduction"></a>1. Giới thiệu
@@ -127,7 +130,7 @@ Khi này, màn hình console sẽ hiển thị ra các gói tin mà *TCPDump* b�
 - **(ether | ip) broadcast:** Bắt các gói tin *IP broadcast* hoặc *Ether broadcast*.
 - **Protocol:** Bắt các gói tin theo *Protocol*.VD: ```tcpdump tcp```
 <br/><br/><br/>
-
+<br/>-----------------------------------------------------------------------------------------------------------------------<br/>
 ## <a name="Firewall-start"></a>III/ Firewall
 **Firewall** là một hệ thống an ninh mạng, có thể dựa trên phần cứng hoặc phần mềm, sử dụng các quy tắc để kiểm soát traffic vào, ra khỏi hệ thống. **Firewall** hoạt động như một rào chắn giữa mạng an toàn và mạng không an toàn.
 
@@ -178,8 +181,40 @@ Chức năng chính của **Firewall** là kiểm soát luồng thông tin ra v�
 <br/>
 - **Firewall** không thể bảo vệ chống lại các đe dọa từ bên trong nội bộ. Ví dụ như một nhân viên cố ý hoặc một nhân viên vô tình hợp tác với kẻ tấn công bên ngoài.
 <br/>
-- **Firewall** không thể bảo vệ chống lại việc chuyển giao giữa các chương trình bị nhiễm virus hoặc các tâp tin. Bởi vì sự đa dạng của các hệ điều hành và các ứng dụng được hỗ trợ từ bên trong nội bộ. Sẽ không thực thế và có lẽ là không thể cho các **Firewall** quét các tập tin được gửi đến nhằm phát hiện virus.
+- **Firewall** không thể bảo vệ, chống lại việc chuyển giao giữa các chương trình bị nhiễm virus hoặc các tâp tin. Bởi vì sự đa dạng của các hệ điều hành và các ứng dụng được hỗ trợ từ bên trong nội bộ. Sẽ không thực thế và có lẽ là không thể cho các **Firewall** quét các tập tin được gửi đến nhằm phát hiện virus.
 
 ### <a name="passing-firewall-ways"></a> 4.  Sử dụng HTTP Proxy để vượt Firewall
 
 Sử dụng **HTTP Proxy Server** làm trung gian để gửi các yêu cầu của user ra ngoài đến máy đích khi IP máy đích bị chặn bởi **Firewall**. Như vậy, khi kiểm tra gói tin, thay vì xác nhận IP của máy đích, **Firewall** sẽ chỉ xác nhận được IP của **HTTP Proxy Server**. Điều kiện để thực hiện phương pháp này là IP của **HTTP Proxy Server** phải không bị chặn bởi **Firewall**.
+
+<br/>-----------------------------------------------------------------------------------------------------------------------<br/>
+
+## <a name="router-start"></a> IV/Router
+Hay còn gọi là bộ định tuyến, là một thiết bị mạng máy tính dùng để **chuyển các gói dữ liệu** qua một liên mạng và đến các thiết bị đầu cuối, thông qua một tiến trình được gọi là định tuyến.
+
+Router hoạt động ở tầng 3, trên nền giao thức IP, nên có thể tái tạo lại các packet ở tầng 3 và đọc được các thông số IP, dựa vào nó mà so sánh với bảng routing (bảng dẫn đường) để chuyển tiếp gói tin trong mạng Lan hay Wan.
+Nhiệm vụ của Router đều là **định tuyến hết**. Nhưng ở Wan, thì sẽ có thêm một chức năng quan trọng hơn, đó là **kết nối các đường truyền** chạy các giao thức khác nhau, làm cho chúng hiểu được nhau.
+
+### <a name="router-functions"></a> 1. Chức năng của Router
+
+- Theo cách nói thông thường, một router hoạt động như một liên kết giữa hai hoặc nhiều mạng và chuyển các gói dữ liệu giữa chúng. Router đưa vào bảng định tuyến (routing table) để tìm đường đi cho gói dữ liệu.
+
+**Bảng định tuyến được người quản trị mạng cấu hình tĩnh (static).**
+
+> Được thiết lập một lần và thường do quản trị mạng nhập bằng tay, hoặc động (dynamic).
+
+> Bảng tự học đường đi thông qua các giao thức định tuyến và nội dung tự động thay đổi theo sự thay đổi của tô pô mạng.
+
+- **Phân cách** các mạng máy tính thành các segment riêng biệt để giảm hiện tượng **đụng độ**, giảm **broadcast** hay thực hiện chức năng bảo mật.
+
+- **Kết nối** các mạng máy tính hay kết nối các user với mạng máy tính **ở các khoảng cách xa** với nhau thông qua các đường truyền thông: Điện thoại, ISDN, T1, X.25…
+
+- Switch phát triển, Router chỉ còn phải đảm nhận việc thực hiện các kết nối truy cập từ xa **(remote access)** hay các **kết nối WAN** cho hệ thống mạng LAN.
+
+- Do hoạt động ở tầng thứ 3 của mô hình OSI, router sẽ hiểu được các protocol quyết định phương thức truyền dữ liệu. Các địa chỉ mà router hiểu là các địa chỉ “giả” được quy định bởi các protocol. Ví dụ như địa chỉ IP đối với protocol TCP/IP, địa chỉ IPX đối với protocol IPX… Do đó tùy theo cấu hình, router quyết định phương thức và đích đến của việc chuyển các packet từ nơi này sang nơi khác. Một cách tổng quát router sẽ chuyển packet theo các bước sau:  
+
+	- Đọc packet.
+	- Gỡ bỏ dạng format quy định bởi protocol của nơi gửi.
+	- Thay thế phần gỡ bỏ đó bằng dạng format của protocol của đích đến.
+	- Cập nhật thông tin chuyển dữ liệu: địa chỉ, trạng thái của nơi gửi, nơi nhận.
+	- Gứi packet đến nơi nhận qua đường truyền tối ưu nhất.
