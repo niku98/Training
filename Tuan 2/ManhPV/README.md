@@ -10,8 +10,17 @@
 		- [Lọc gói tin](#filter-packets)
 		- [Chi tiết gói tin](#packget-detail)
 2. [TCPDump](#TCPDump-start)
+	- [Giới thiệu](#introduction)
+	- [Cài đặt](#install-tcpdump)
+	- [Cơ bản](#tcpdump-basic)
+		- [Cấu trúc gói tin](#packet-struct)
+	- [Tùy chọn trong TCPDump](#options-tcpdump)
+	- [Một số bộ lọc cơ bản](#tcp-filters)
+3. [Firewall](#Firewall-start)
+	- [Chức năng](#Firewall-function)
+	- [Nguyên lý](#Firewall-Principles)
 
-## <a name="wireshark-start"></a> Hướng dẫn sử dụng Wireshark để bắt và phân tích gói tin trong *Network*
+## <a name="wireshark-start"></a>I/ Hướng dẫn sử dụng Wireshark để bắt và phân tích gói tin trong *Network*
 
 Đây là phần mềm được dùng để bắt các gói tin được truyền trong *Network*, từ đó ta phân tích gói tin bắt được, phục vụ cho mục đích nhất định nào đấy. *Wireshark* cũng cung cấp chức năng save, giúp ta lư lại cá gói tin đã bắt được.
 
@@ -61,7 +70,7 @@ Bạn có thể kiểm tra kĩ hơn các thông tin trong gói tin bằng cách 
 ![](https://fthmb.tqn.com/5qrzPliIm9ekuq1gy_52XMZFqY8=/768x0/filters:no_upscale()/wireshark-captured-data-panes-59512e265f9b58f0fc7b1f17.png)
 <br/><br/>
 
-## <a name="TCPDump-start"></a> Hướng dẫn sử dụng TCPDump để bắt và phân tích gói tin trong *Network*
+## <a name="TCPDump-start"></a>II/ Hướng dẫn sử dụng TCPDump để bắt và phân tích gói tin trong *Network*
 
 ### <a name="introduction"></a>1. Giới thiệu
 Tương tự như *Wireshark*, *TCPDump* cũng là một phần mềm dùng để bắt các gói tin trong *Network*, có điều, công cụ này hiển thị dưới màn hình console(màn hình command line). *TCPDump* có thể lưu lại các lần bắt gói tin vào file pcap để mở lại vào lần sau, có thể dùng cả *Wireshark* để mở.
@@ -80,9 +89,9 @@ Khi này, màn hình console sẽ hiển thị ra các gói tin mà *TCPDump* b�
 - **Packet received by filter:** số lượng gói tin được nhận bởi bộ lọc.
 - **Packet dropped by kernel:** số lượng packet đã bị dropped bởi cơ chế bắt gói tin của hệ điều hành.
 
-#### Cấu trúc của một dòng gói tin:
-```time-stamp src > dst:  flags  data-seqno  ack  window urgent options```
-
+#### <a name="packet-struct"></a> Cấu trúc chung của một dòng gói tin:
+	time-stamp src > dst:  flags  data-seqno  ack  window urgent options
+**Chú giải**
 - **time-stamp:** Thời gian lúc bắt gói tin
 - **src > dst:** IP nguồn và IP đích
 - **Flag:**
@@ -93,3 +102,54 @@ Khi này, màn hình console sẽ hiển thị ra các gói tin mà *TCPDump* b�
 	- **R:** (RST) Được sử dụng khi muốn thiết lập lại đường truyền.
 	- **Data-sqeno:** Số sequence number của gói dữ liệu hiện tại.
 	- **ACK:** Mô tả số sequence number tiếp theo của gói tin do máy gửi truyền (số sequence number máy nhận mong muốn nhận được)
+	- **Window:** Số byte có thể nhận được.
+	- **Urgent:** Cho biết dữ liệu khẩn trong gói tin.
+
+### <a name="options-tcpdump"></a>4. Một số tùy chọn trong TCPDump
+- **-D :** Liệt kê các *Network Interface* trong máy có thể sử dụng.
+- **-i :** Bắt các gói tin trong một *Network Interface* được chỉ định. VD: ```tcpdump -i ens33```
+- **-c N :** TCPDump bắt N gói tin, sau đó dừng lại.
+- **-n :** Không phân dải IP sang hostname.
+- **-nm :** Tương tự **-n** và không phân giải cả portname
+- **-v :** Tăng số lượng thông tin nhận được trong gói tin(Có thể dùng **-vv** hay **-vvv**).
+- **-s :** Tùy chỉnh kích thước gói tin sẽ lưu lại.
+### <a name="tcp-filters"></a> 5. Các bộ lọc cơ bản
+- **dst A:** Bắt các gói tin có IP đích là A.
+- **src A:** Bắt các gói tin có IP nguồn là A.
+- **host A:** Bắt các gói tin có hostname nguồn hoặc đích là A.
+- **port A:** Bắt các gói tin có port được chỉ định.
+- **less A:** Bắt các gói tin có *length* nhỏ hơn A.
+- **greater A:** Bắt các gói tin có *length* lớn hơn A.
+- **(ether | ip) broadcast:** Bắt các gói tin *IP broadcast* hoặc *Ether broadcast*.
+- **Protocol:** Bắt các gói tin theo *Protocol*.VD: ```tcpdump tcp```
+<br/><br/><br/>
+
+## <a name="Firewall-start"></a>III/ Firewall
+**Firewall** là một công cụ bảo vệ mạng máy tính từ những tấn công bên ngoài, gồm các thành phần cơ bản sau:
+- **Bộ lọc gói (Packet Filter):** làm nhiệm vụ lọc các packet vào / ra khỏi mạng.
+- **Proxy Services:** một Server đặc biệt ở giữa Client và Server thực sự làm nhiệm vụ lọc ở mức message mức ứng dụng (application level).
+- **Cổng vòng (Circuit-Level Gateway):** chuyển tiếp (relay) các kết nối TCP mà không thực hiện bất kỳ một hành động xử lý hay lọc packet nào.
+
+### <a name="Firewall-function"></a> 1. Chức năng
+Chức năng chính của **Firewall** là kiểm soát luồng thông tin từ giữa *LAN* và *Internet*. Thiết lập cơ chế điều khiển dòng thông tin giữa *LAN* và mạng *Internet*:
+- Cho phép hoặc cấm  dịch vụ truy cập ra ngoài.
+- Cho phép hoặc cấm dịch vụ truy cập vào trong.
+- Theo dõi luồng dữ liệu mạng giữa *Internet* và *LAN*.
+- Kiểm soát địa chỉ truy cập, cấm địa chỉ truy cập.
+- Kiểm soát người sử dụng và việc truy cập của người sử dụng.
+- Kiểm soát nội dung thông tin lưu thông trên mạng.
+
+### <a name="Firewall-Principles"></a> 2. Nguyên lý
+**Firewall** hoạt động chặt chẽ với giao thức TCI/IP, vì giao thức này cũng làm việc theo thuật toán chia nhỏ dữ liệu thành các packets kèm địa chỉ rồi mới gửi đến đích.
+
+Bộ lọc packet cho phép hay từ chối mỗi packet mà nó nhận đ­ợc. Nó kiểm tra toàn bộ đoạn dữ liệu để quyết định xem đoạn dữ liệu đó có thoả mãn một trong số các luật lệ của bộ lọc packet hay không. Các luật lệ lọc packet dựa trên các thông tin ở phần *Header* của packet, dùng để cho phép truyền các packet đó ở trên mạng:
+- Địa chỉ IP nơi xuất phát ( IP Source address)
+- Địa chỉ IP nơi nhận (IP Destination address)
+- Những thủ tục truyền tin (TCP, UDP, ICMP, IP tunnel)
+- Cổng TCP/UDP nơi xuất phát (TCP/UDP source port)
+- Cổng TCP/UDP nơi nhận (TCP/UDP destination port)
+- Dạng thông báo ICMP ( ICMP message type)
+- Giao diện packet đến ( incomming interface of packet)
+- Giao diện packet đi ( outcomming interface of packet)
+
+Nếu packet thỏa mãn các luật của Firewall, nó sẽ được cho phép đi qua Firewall, nếu không nó sẽ bị bỏ qua.
