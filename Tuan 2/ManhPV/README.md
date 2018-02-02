@@ -17,8 +17,12 @@
 	- [Tùy chọn trong TCPDump](#options-tcpdump)
 	- [Một số bộ lọc cơ bản](#tcp-filters)
 3. [Firewall](#Firewall-start)
-	- [Chức năng](#Firewall-function)
 	- [Nguyên lý](#Firewall-Principles)
+	- [Chức năng](#Firewall-function)
+	- [Ưu nhược điểm](#firewall-dis-advantages)
+		- [Ưu điểm](#firewall-advantages)
+		- [Nhược điểm](#firewall-disadvantages)
+	- [Sử dụng HTTP Proxy để vượt Firewall](#passing-firewall-ways)
 
 ## <a name="wireshark-start"></a>I/ Hướng dẫn sử dụng Wireshark để bắt và phân tích gói tin trong *Network*
 
@@ -125,24 +129,17 @@ Khi này, màn hình console sẽ hiển thị ra các gói tin mà *TCPDump* b�
 <br/><br/><br/>
 
 ## <a name="Firewall-start"></a>III/ Firewall
-**Firewall** là một công cụ bảo vệ mạng máy tính từ những tấn công bên ngoài, gồm các thành phần cơ bản sau:
+**Firewall** là một hệ thống an ninh mạng, có thể dựa trên phần cứng hoặc phần mềm, sử dụng các quy tắc để kiểm soát traffic vào, ra khỏi hệ thống. **Firewall** hoạt động như một rào chắn giữa mạng an toàn và mạng không an toàn.
+
+**Firewall** gồm các thành phần cơ bản sau:
 - **Bộ lọc gói (Packet Filter):** làm nhiệm vụ lọc các packet vào / ra khỏi mạng.
 - **Proxy Services:** một Server đặc biệt ở giữa Client và Server thực sự làm nhiệm vụ lọc ở mức message mức ứng dụng (application level).
 - **Cổng vòng (Circuit-Level Gateway):** chuyển tiếp (relay) các kết nối TCP mà không thực hiện bất kỳ một hành động xử lý hay lọc packet nào.
 
-### <a name="Firewall-function"></a> 1. Chức năng
-Chức năng chính của **Firewall** là kiểm soát luồng thông tin từ giữa *LAN* và *Internet*. Thiết lập cơ chế điều khiển dòng thông tin giữa *LAN* và mạng *Internet*:
-- Cho phép hoặc cấm  dịch vụ truy cập ra ngoài.
-- Cho phép hoặc cấm dịch vụ truy cập vào trong.
-- Theo dõi luồng dữ liệu mạng giữa *Internet* và *LAN*.
-- Kiểm soát địa chỉ truy cập, cấm địa chỉ truy cập.
-- Kiểm soát người sử dụng và việc truy cập của người sử dụng.
-- Kiểm soát nội dung thông tin lưu thông trên mạng.
-
-### <a name="Firewall-Principles"></a> 2. Nguyên lý
+### <a name="Firewall-Principles"></a> 1. Nguyên lý
 **Firewall** hoạt động chặt chẽ với giao thức TCI/IP, vì giao thức này cũng làm việc theo thuật toán chia nhỏ dữ liệu thành các packets kèm địa chỉ rồi mới gửi đến đích.
 
-Bộ lọc packet cho phép hay từ chối mỗi packet mà nó nhận đ­ợc. Nó kiểm tra toàn bộ đoạn dữ liệu để quyết định xem đoạn dữ liệu đó có thoả mãn một trong số các luật lệ của bộ lọc packet hay không. Các luật lệ lọc packet dựa trên các thông tin ở phần *Header* của packet, dùng để cho phép truyền các packet đó ở trên mạng:
+Bộ lọc packet cho phép hay từ chối mỗi packet mà nó nhận đ­ợc. Nó kiểm tra toàn bộ đoạn dữ liệu để quyết định xem đoạn dữ liệu đó có thoả mãn một trong số các quy tắc của bộ lọc packet hay không. Các quy tắc lọc packet dựa trên các thông tin ở phần *Header* của packet, dùng để cho phép truyền các packet đó ở trên mạng:
 - Địa chỉ IP nơi xuất phát ( IP Source address)
 - Địa chỉ IP nơi nhận (IP Destination address)
 - Những thủ tục truyền tin (TCP, UDP, ICMP, IP tunnel)
@@ -152,4 +149,37 @@ Bộ lọc packet cho phép hay từ chối mỗi packet mà nó nhận đ­ợc
 - Giao diện packet đến ( incomming interface of packet)
 - Giao diện packet đi ( outcomming interface of packet)
 
-Nếu packet thỏa mãn các luật của Firewall, nó sẽ được cho phép đi qua Firewall, nếu không nó sẽ bị bỏ qua.
+Nếu packet thỏa mãn các quy tắc của **Firewall**, nó sẽ được cho phép đi qua **Firewall**, nếu không nó sẽ bị từ chối.
+
+### <a name="Firewall-function"></a> 2. Chức năng
+Chức năng chính của **Firewall** là kiểm soát luồng thông tin ra vào trong *Network*. Thiết lập cơ chế điều khiển dòng thông tin trong *Network*:
+- Cho phép hoặc cấm  dịch vụ truy cập ra ngoài.
+- Cho phép hoặc cấm dịch vụ truy cập vào trong.
+- Theo dõi luồng dữ liệu mạng trong *Network*.
+- Kiểm soát địa chỉ truy cập, cấm địa chỉ truy cập.
+- Kiểm soát người sử dụng và việc truy cập của người sử dụng.
+- Kiểm soát nội dung thông tin lưu thông trên mạng.
+
+**Firewall** hoạt động như một thiết bị trung gian, thay mặt user để thực hiện kết nối ra bên ngoài để đảm bảo an toàn.
+
+**Firewall** cũng có thể bảo vệ dữ liệu của user khỏi các mối đe dọa bảo mật thông qua việc kiểm soát truy cập, trạng thái gói tin.
+
+### <a name="firewall-dis-advantages"></a> 3. Ưu nhược điểm của firewall
+#### <a name="firewall-advantages"></a> a. Ưu điểm
+- **Firewall** do con người cấu hình có thể che dấu mạng nội bộ bên trong, lọc dữ liệu và nội dung của dữ liệu để ngăn chặn được các ý đồ xấu từ bên ngoài như : muốn đánh cắp thông tin mật, muốn gây thiệt tê liệt hệ thống đối thủ của mình để gây thiệt hại về kinh tế…
+<br/>
+- **Firewall** có thể ngăn chặn các cuộc tấn công vào các server.
+<br/>
+- Ngoài ra **Firewall** còn có khả năng quét virus, chống spam,... khi được tích hợp những công cụ cần thiết.
+
+#### <a name="firewall-disadvantages"></a> b. Nhược điểm
+
+- **Firewall** không thể bảo vệ chống lại các cuộc tấn công bỏ qua tường lửa.
+<br/>
+- **Firewall** không thể bảo vệ chống lại các đe dọa từ bên trong nội bộ. Ví dụ như một nhân viên cố ý hoặc một nhân viên vô tình hợp tác với kẻ tấn công bên ngoài.
+<br/>
+- **Firewall** không thể bảo vệ chống lại việc chuyển giao giữa các chương trình bị nhiễm virus hoặc các tâp tin. Bởi vì sự đa dạng của các hệ điều hành và các ứng dụng được hỗ trợ từ bên trong nội bộ. Sẽ không thực thế và có lẽ là không thể cho các **Firewall** quét các tập tin được gửi đến nhằm phát hiện virus.
+
+### <a name="passing-firewall-ways"></a> 4.  Sử dụng HTTP Proxy để vượt Firewall
+
+Sử dụng **HTTP Proxy Server** làm trung gian để gửi các yêu cầu của user ra ngoài đến máy đích khi IP máy đích bị chặn bởi **Firewall**. Như vậy, khi kiểm tra gói tin, thay vì xác nhận IP của máy đích, **Firewall** sẽ chỉ xác nhận được IP của **HTTP Proxy Server**. Điều kiện để thực hiện phương pháp này là IP của **HTTP Proxy Server** phải không bị chặn bởi **Firewall**.
