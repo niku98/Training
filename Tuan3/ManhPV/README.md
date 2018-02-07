@@ -3,14 +3,14 @@
 
 ### Mục lục
 1. [Linux](#linux-start)
-- [Linux là gì?](#what-is-linux)
-- [Một số Distro của Linux](#linux-distro)
-- [Ưu nhược điểm của Linux](#linux-dis-advantages)
-- [Ưu điểm](#linux-advantages)
-- [Nhược điểm](#linux-disadvantages)
-- [Phân quyền trong Linux](#linux-user-role)
-- [Các quyền của user](#linux-roles)
-- [Cách xem quyền của File - Folder](#linux-view-role)
+	- [Linux là gì?](#what-is-linux)
+	- [Một số Distro của Linux](#linux-distro)
+	- [Ưu nhược điểm của Linux](#linux-dis-advantages)
+	- [Ưu điểm](#linux-advantages)
+	- [Nhược điểm](#linux-disadvantages)
+	- [Phân quyền trong Linux](#linux-user-role)
+	- [Các quyền của user](#linux-roles)
+	- [Cách xem quyền của File - Folder](#linux-view-role)
 
 ***
 ## I/Linux
