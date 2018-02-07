@@ -1,16 +1,16 @@
-# Bản báo cáo tuần 2
+# Bản báo cáo tuần 3
 
 
 ### Mục lục
 1. [Linux](#linux-start)
-	- [Linux là gì?](#what-is-linux)
-		- [Một số Distro của Linux](#linux-distro)
-	- [Ưu nhược điểm của Linux](#linux-dis-advantages)
-		- [Ưu điểm](#linux-advantages)
-		- [Nhược điểm](#linux-disadvantages)
-	- [Phân quyền trong Linux](#linux-user-role)
-		- [Các quyền của user](#linux-roles)
-		- [Cách xem quyền của File - Folder](#linux-view-role)
+- [Linux là gì?](#what-is-linux)
+- [Một số Distro của Linux](#linux-distro)
+- [Ưu nhược điểm của Linux](#linux-dis-advantages)
+- [Ưu điểm](#linux-advantages)
+- [Nhược điểm](#linux-disadvantages)
+- [Phân quyền trong Linux](#linux-user-role)
+- [Các quyền của user](#linux-roles)
+- [Cách xem quyền của File - Folder](#linux-view-role)
 
 ***
 ## I/Linux
@@ -45,14 +45,14 @@
 ### <a name="linux-user-role"></a> 3. Phân quyền trong Linux
 #### <a name="linux-roles"></a> a. Các quyền của user
 - **Read(r : 4):**
-	- **Files:** quyền được *xem* nội dung của *file*.
-	- **Folders:** quyền được *xem* danh sách các 	*subfolder* và file bên trong *folder* đó.
+- **Files:** quyền được *xem* nội dung của *file*.
+- **Folders:** quyền được *xem* danh sách các 	*subfolder* và file bên trong *folder* đó.
 - **Write(w : 2):**
-	- **Files:** quyền *thêm*, *sửa* nội dung file.
-	- **Folders:** quyền *thêm*, *xóa* một *subfolder* hay *file* trong *folder* đó.
+- **Files:** quyền *thêm*, *sửa* nội dung file.
+- **Folders:** quyền *thêm*, *xóa* một *subfolder* hay *file* trong *folder* đó.
 - **Excute(x : 1):**
- 	- **Files:** cho phép thực thi *file*, nếu là *file* **program** hay **script**.
-	- **Folders:** cho phép **cd** vào *folder* này.
+- **Files:** cho phép thực thi *file*, nếu là *file* **program** hay **script**.
+- **Folders:** cho phép **cd** vào *folder* này.
 - **Deny(- : 0):** **Không** có quyền làm một **thao tác** gì đó đối với một **file** hay **folder** xác định.
 
 #### <a name="linux-view-role"></a> b. Xem phân quyền của file, folder
@@ -63,14 +63,14 @@ Sử dụng lệnh ```ls -la``` để liệt kê danh sách *file* và *subfolde
 
 ##### Cách xem:
 - Cột đầu gồm 10 ký tự:
-	- Ký tự đầu cho biết kiểu file: **d** là *folder*, **-** là *file*.
-	- 9 ký tự sau chia làm **3 phần**, mỗi phần 3 ký tự:
-		- **Phần 1:** Cho biết quyền của **user** sở hữu (**Owner**).
-		- **Phần 2:** Cho biết quyền của **group** sở hữu (**Owner group**).
-		- **Phần 3:** Cho biết quyền của các **user** khác.
+- Ký tự đầu cho biết kiểu file: **d** là *folder*, **-** là *file*.
+- 9 ký tự sau chia làm **3 phần**, mỗi phần 3 ký tự:
+- **Phần 1:** Cho biết quyền của **user** sở hữu (**Owner**).
+- **Phần 2:** Cho biết quyền của **group** sở hữu (**Owner group**).
+- **Phần 3:** Cho biết quyền của các **user** khác.
 - Cột hai gồm 1 số:
-	- **Folder:** Cho biết số lượng *subfolder* + *parentfolder* + chính nó.
-	- **File:**  Cho biết số đường dẫn cố định đến nó.
+- **Folder:** Cho biết số lượng *subfolder* + *parentfolder* + chính nó.
+- **File:**  Cho biết số đường dẫn cố định đến nó.
 - Cột 3: Cho biết **Owner** - người sở hữu.
 - Cột 4: Cho biết **Owner group** - nhóm sở hữu.
 - Cột 5: Cho biết dung lượng *file*(*folder*).
@@ -83,11 +83,10 @@ Chỉ *User* có quyền **root** hoặc **Owner User** mới có thể thay đ�
 Để thay đổi quyền của *file* hay *folder*, ta dùng lệnh:<br/> ```chmod <mode> file_name```
 
 **Mode** có thể viết theo hai cách:
-##### Symbolic:
-```chmode [group][operator][permission] file_name```
+>**Symbolic:** ```chmode [group][operator][permission] file_name```
 
 **Grouop:**
-
+>
 | Group Permision | Symbolic     | Description     |
 | :------------- | :------------- | :------------- |
 | Owner       | u       | 	Người sở hữu	|
@@ -113,3 +112,5 @@ Chỉ *User* có quyền **root** hoặc **Owner User** mới có thể thay đ�
 | Setuid/Setgid       | s       |		Người thực thi là người sở hữu thay vì người sử dụng lệnh	|
 |        | S      |		Tương tự với Setuid/Setgid nhưng file không thể thực thi	|
 | Sticky       | t       |		**Owner User** (hoặc root) mới được phép xóa hoặc thay đổi tên file	|
+
+> **Octal Mode:**
