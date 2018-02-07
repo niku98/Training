@@ -65,12 +65,12 @@ Sử dụng lệnh ```ls -la``` để liệt kê danh sách *file* và *subfolde
 - Cột đầu gồm 10 ký tự:
 - Ký tự đầu cho biết kiểu file: **d** là *folder*, **-** là *file*.
 - 9 ký tự sau chia làm **3 phần**, mỗi phần 3 ký tự:
-- **Phần 1:** Cho biết quyền của **user** sở hữu (**Owner**).
-- **Phần 2:** Cho biết quyền của **group** sở hữu (**Owner group**).
-- **Phần 3:** Cho biết quyền của các **user** khác.
+	- **Phần 1:** Cho biết quyền của **user** sở hữu (**Owner**).
+	- **Phần 2:** Cho biết quyền của **group** sở hữu (**Owner group**).
+	- **Phần 3:** Cho biết quyền của các **user** khác.
 - Cột hai gồm 1 số:
-- **Folder:** Cho biết số lượng *subfolder* + *parentfolder* + chính nó.
-- **File:**  Cho biết số đường dẫn cố định đến nó.
+	- **Folder:** Cho biết số lượng *subfolder* + *parentfolder* + chính nó.
+	- **File:**  Cho biết số đường dẫn cố định đến nó.
 - Cột 3: Cho biết **Owner** - người sở hữu.
 - Cột 4: Cho biết **Owner group** - nhóm sở hữu.
 - Cột 5: Cho biết dung lượng *file*(*folder*).
