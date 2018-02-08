@@ -142,29 +142,29 @@ Với cách này, ta có thể phân quyền riêng biệt theo từng nhóm quy
 
 | Group Permision | Symbolic| Description   	|
 | :-------------- | :------ | :---------------- |
-| Owner       	  | u       | 	Người sở hữu	|
-| Group       	  | g       |	Nhóm sở hữu		|
-| Other       	  | o       |	Người khác		|
-| All         	  | a       |	Tất cả			|
+| Owner       	  | u       | Người sở hữu		|
+| Group       	  | g       | Nhóm sở hữu		|
+| Other       	  | o       | Người khác		|
+| All         	  | a       | Tất cả			|
 
 **Operator:**
 
-| Operator 		| Symbolic| Description     	|
-| :------------ | :------ | :------------------ |
-| Add       	| +       | 	Thêm quyền		|
-| Remove       	| -       |		Loại bỏ quyền	|
-| Assign       	| =       |		Chỉ định quyền	|
+| Operator 		| Symbolic| Description     |
+| :------------ | :------ | :-------------- |
+| Add       	| +       | Thêm quyền		|
+| Remove       	| -       |	Loại bỏ quyền	|
+| Assign       	| =       |	Chỉ định quyền	|
 
 **Permision:**
 
-| Permision 	| Symbolic| Description     														|
-| :------------ | :------ | :---------------------------------------------------------------------- |
-| Read       	| r       | 	Quyền đọc															|
-| Write       	| w       |		Quyền ghi															|
-| Excute       	| x       |		Quyền thực thi 														|
-| Setuid/Setgid | s       |		Người thực thi là người sở hữu thay vì người sử dụng lệnh			|
-|        		| S       |		Tương tự với Setuid/Setgid nhưng file không thể thực thi			|
-| Sticky       	| t       |		**Owner User** (hoặc root) mới được phép xóa hoặc thay đổi tên file	|
+| Permision 	| Symbolic| Description     													|
+| :------------ | :------ | :------------------------------------------------------------------ |
+| Read       	| r       | Quyền đọc															|
+| Write       	| w       |	Quyền ghi															|
+| Excute       	| x       |	Quyền thực thi 														|
+| Setuid/Setgid | s       |	Người thực thi là người sở hữu thay vì người sử dụng lệnh			|
+|        		| S       |	Tương tự với Setuid/Setgid nhưng file không thể thực thi			|
+| Sticky       	| t       |	**Owner User** (hoặc root) mới được phép xóa hoặc thay đổi tên file	|
 
 > **Octal Mode:** ```chmode [octal_mode] file_name```
 
