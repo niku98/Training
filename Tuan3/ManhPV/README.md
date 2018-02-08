@@ -3,15 +3,22 @@
 
 ### Mục lục
 1. [Linux](#linux-start)
-	- [Linux là gì?](#what-is-linux)
-	- [Một số Distro của Linux](#linux-distro)
-	- [Ưu nhược điểm của Linux](#linux-dis-advantages)
-		- [Ưu điểm](#linux-advantages)
-		- [Nhược điểm](#linux-disadvantages)
-	- [Phân quyền trong Linux](#linux-user-role)
-		- [Các quyền của user](#linux-roles)
-		- [Cách xem quyền của File - Folder](#linux-view-role)
-
+- [Linux là gì?](#what-is-linux)
+- [Một số Distro của Linux](#linux-distro)
+- [Ưu nhược điểm của Linux](#linux-dis-advantages)
+- [Ưu điểm](#linux-advantages)
+- [Nhược điểm](#linux-disadvantages)
+- [User và Group trong Linux](#linux-user-group)
+- [User](#linux-user)
+- [Group](#linux-usergroup)
+- [Phân quyền trong Linux](#linux-user-role)
+- [Các quyền của user](#linux-roles)
+- [Cách xem quyền của File - Folder](#linux-view-role)
+- [Thay đổi quyền](#linux-change-role)
+2. [Ubuntu](#ubuntu-start)
+- [Command line cơ bản](#ubuntu-basic-command)
+- [Command line quản lý file, folder](#ubuntu-file-folder-command)
+- [Cấu hình mạng](#ubuntu-config-network)
 ***
 ## I/Linux
 ### <a name="linux-start"></a> 1. Linux là gì?
@@ -42,7 +49,51 @@
 - **Tính thống nhất:** Do **Linux** là mã nguồn mở nên ai cũng có thể chỉnh sửa và phát hành một phiên bản lên *Internet*. Điều này khiến người dùng phải mất một thời gian tìm hiểu để lựa chọn một phiên bản phù hợp với nhu cầu, nhất là với người dùng không có nhiều kiến thức - kinh nghiệm.
 - **Phần cứng:** Có nhiều nhà sản xuất phần cứng không hỗ trợ driver chạy trên **Linux**. Do đó, sẽ có những thiết bị - phần cứng không thể chạy trên **Linux**.
 
-### <a name="linux-user-role"></a> 3. Phân quyền trong Linux
+### <a name="linux-user-group-start"></a> 3. User và Group trong Linux
+#### <a name="linux-user"></a> a. User
+User là người có thể truy cập đến hệ thống.
+User có **username** và **password**.
+Có hai loại user: **super user** và **regular user**.
+Mỗi user còn có một định danh riêng gọi là **UID**.
+
+**Để tạo User, ta dùng lệnh:** ```useradd [option] <username>```
+- **Option:**
+- -c "Thông tin user"
+- -d <Thư mục cá nhân>
+- -m : Tạo thư mục cá nhân nếu chưa tồn tại
+- -g <nhóm của user>
+
+**Ví dụ:** ```useradd –c "Nguyen Van A" –g serveradmin vana```
+
+**Để thay đổi thông tin User, ta dùng lệnh:** ```usermod [option] <username>```
+
+Các *Option* tương dự với **useradd**.
+**Ví dụ:** ```usermod –g kinhdoanh vana```
+Chuyển vana từ nhóm server admin sang nhóm kinh doanh.
+
+**Để xóa một User, ta dùng lệnh:** ```userdel [option] <username>```
+**Ví dụ:** ```userdel  –r  vana```
+
+**Khóa/Mở khóa một User:**
+```
+passwd –l <username>  /  passwd –u <username>
+usermod –L <username> /  usermod –U <username>
+```
+
+#### <a name="linux-usergroup"></a> b. Group
+Group là **tập hợp nhiều user** lại.
+Mỗi user luôn là **thành viên** của một group.
+Khi tạo một user thì mặc định một group được tạo ra.
+Mỗi group còn có một *định danh* riêng gọi là **GID**.
+
+**Lệnh tạo group:** ```groupadd <groupname>```
+**Ví dụ:** ```groupadd serveradmin```
+
+**Lệnh xóa group:** ```groupdel <groupname>```
+**Ví dụ:** ```groupdel serveradmin```
+
+
+### <a name="linux-user-role"></a> 4. Phân quyền trong Linux
 #### <a name="linux-roles"></a> a. Các quyền của user
 - **Read(r : 4):**
 - **Files:** quyền được *xem* nội dung của *file*.
@@ -65,12 +116,12 @@ Sử dụng lệnh ```ls -la``` để liệt kê danh sách *file* và *subfolde
 - Cột đầu gồm 10 ký tự:
 - Ký tự đầu cho biết kiểu file: **d** là *folder*, **-** là *file*.
 - 9 ký tự sau chia làm **3 phần**, mỗi phần 3 ký tự:
-	- **Phần 1:** Cho biết quyền của **user** sở hữu (**Owner**).
-	- **Phần 2:** Cho biết quyền của **group** sở hữu (**Owner group**).
-	- **Phần 3:** Cho biết quyền của các **user** khác.
+- **Phần 1:** Cho biết quyền của **user** sở hữu (**Owner**).
+- **Phần 2:** Cho biết quyền của **group** sở hữu (**Owner group**).
+- **Phần 3:** Cho biết quyền của các **user** khác.
 - Cột hai gồm 1 số:
-	- **Folder:** Cho biết số lượng *subfolder* + *parentfolder* + chính nó.
-	- **File:**  Cho biết số đường dẫn cố định đến nó.
+- **Folder:** Cho biết số lượng *subfolder* + *parentfolder* + chính nó.
+- **File:**  Cho biết số đường dẫn cố định đến nó.
 - Cột 3: Cho biết **Owner** - người sở hữu.
 - Cột 4: Cho biết **Owner group** - nhóm sở hữu.
 - Cột 5: Cho biết dung lượng *file*(*folder*).
@@ -129,3 +180,32 @@ Cách này sẽ khó sử dụng hơn với những người mới, nhưng nếu
 | 5       | Sticky và Setuid	     | Quyền đọc và thực thi (r-x)		|
 | 6       | Setgid và Setuid       	 | Quyền đọc và ghi (rw-)			|
 | 7       | Sticky, Setgid và Setuid | Quyền đọc, ghi và thực thi (rwx)	|
+
+## <a name="ubuntu-start"></a> II/ Ubuntu
+
+### <a name="ubuntu-basic-command"></a> 1. Các câu lệnh cơ bản
+Để xem toàn bộ option của một câu lệnh trong **Ubuntu**, ta dùng lệnh: ```man <câu lệnh>```
+
+**Ví dụ:** ```man ls```, ta sẽ được như hình dưới.
+
+![](http://www.ubuntujourneyman.com/wp-content/uploads/2011/05/man-ls-output1.png)
+
+#### <a name="ubuntu-file-folder-command"></a> a. Để quản lý files, folders
+
+| Lệnh 								| Mô tả 												 |
+| :-------------------------------- | :----------------------------------------------------- |
+| cp file /folder 					| Chép file vào folder 									 |
+| cp file1 file2 					| Chép file1 sang file2 								 |
+| cp -r folder1 folder2 			| Chép toàn bộ nội dung của folder1 vào folder2 		 |
+| rsync -a folder1 folder2 			| Đồng bộ nội dung folder1 sang folder2  				 |
+| mv file1/folder1 file2/folder2	| Chuyển tên file1/folder1 thành tên file2/folder2 		 |
+| mv file folder   					| Chuyển file vào folder 								 |
+| mv file1 folder2/file2 			| Chuyển file1 vào folder2 đồng thời đổi tên thành file2 |
+| mkdir folder 						| Tạo folder 											 |
+| mkdir -p folder1/folder2 			| Tạo ra folder1 và subfolder folder2 					 |
+| rm file 							| Xóa bỏ file trong folder hiện hành 					 |
+| rmdir folder 						| Xóa bỏ folder trống 									 |
+| rm -rf folder 					| Xóa bỏ  folder và tất cả các tập tin 					 |
+| ln -s file link	 				| Tạo ra một liên kết mang tên link đến file (nối tắt) 	 |
+| find folder -file_name 			| Tìm file trong folder 								 |
+| diff file1 file2 					| So sánh nội dung của 2 file hoặc của 2 folder 		 |
