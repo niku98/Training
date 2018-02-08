@@ -80,37 +80,52 @@ Sử dụng lệnh ```ls -la``` để liệt kê danh sách *file* và *subfolde
 #### <a name="linux-change-role"></a> c. Thay đổi quyền.
 Chỉ *User* có quyền **root** hoặc **Owner User** mới có thể thay đổi quyền có *file*, *folder* đó.
 
-Để thay đổi quyền của *file* hay *folder*, ta dùng lệnh:<br/> ```chmod <mode> file_name```
+Để thay đổi quyền của *file* hay *folder*, ta dùng lệnh:<br/> ```chmod [mode] file_name```
 
 **Mode** có thể viết theo hai cách:
 >**Symbolic:** ```chmode [group][operator][permission] file_name```
 
+Với cách này, ta có thể phân quyền riêng biệt theo từng nhóm quyền, dễ hiểu hơn cho những người mới.
+
 **Grouop:**
 
-| Group Permision | Symbolic     | Description     |
-| :------------- | :------------- | :------------- |
-| Owner       | u       | 	Người sở hữu	|
-| Group       | g       |	Nhóm sở hữu	|
-| Other       | o       |	Người khác	|
-| All         | a       |		Tất cả	|
+| Group Permision | Symbolic| Description   	|
+| :-------------- | :------ | :---------------- |
+| Owner       	  | u       | 	Người sở hữu	|
+| Group       	  | g       |	Nhóm sở hữu		|
+| Other       	  | o       |	Người khác		|
+| All         	  | a       |	Tất cả			|
 
 **Operator:**
 
-| Operator | Symbolic     | Description     |
-| :------------- | :------------- | :------------- |
+| Operator 		| Symbolic| Description     	|
+| :------------ | :------ | :------------------ |
 | Add       	| +       | 	Thêm quyền		|
-| Remove       	| -       |	Loại bỏ quyền		|
+| Remove       	| -       |		Loại bỏ quyền	|
 | Assign       	| =       |		Chỉ định quyền	|
 
 **Permision:**
 
-| Permision | Symbolic     | Description     |
-| :------------- | :------------- | :------------- |
-| Read       	| r       | 	Quyền đọc													|
-| Write       	| w       |	Quyền ghi														|
-| Excute       	| x       |		Quyền thực thi 												|
-| Setuid/Setgid | s       |		Người thực thi là người sở hữu thay vì người sử dụng lệnh	|
-|        		| S       |		Tương tự với Setuid/Setgid nhưng file không thể thực thi	|
+| Permision 	| Symbolic| Description     														|
+| :------------ | :------ | :---------------------------------------------------------------------- |
+| Read       	| r       | 	Quyền đọc															|
+| Write       	| w       |		Quyền ghi															|
+| Excute       	| x       |		Quyền thực thi 														|
+| Setuid/Setgid | s       |		Người thực thi là người sở hữu thay vì người sử dụng lệnh			|
+|        		| S       |		Tương tự với Setuid/Setgid nhưng file không thể thực thi			|
 | Sticky       	| t       |		**Owner User** (hoặc root) mới được phép xóa hoặc thay đổi tên file	|
 
-> **Octal Mode:**
+> **Octal Mode:** ```chmode [octal_mode] file_name```
+
+Cách này sẽ khó sử dụng hơn với những người mới, nhưng nếu quen rồi thì sẽ nhanh hơn so với cách thứ nhất. Với cách này, ta có thể biểu diễn quyền với tối đa 4 chữ số từ **0 đến 7**. Số nào bị thiếu sẽ được coi là 0, VD: 5 sẽ được tính là 0005. Dưới đây là ý của các số để phân quyền:
+
+| Giá trị | Hàng thứ nhất     		 | Hàng thứ 2, 3, 4					|
+| :-------| :----------------------- | :------------------------------- |
+| 0       | 		       			 | Không có quyền (---) 			|
+| 1       | Sticky       			 | Quyền thực thi (--x) 			|
+| 2       | Setgid       			 | Quyền ghi (-w-)					|
+| 3       | Setgid và Sticky       	 | Quyền ghi và thực thi (-wx)		|
+| 4       | Setuid       			 | Quyền đọc (r--)					|
+| 5       | Sticky và Setuid	     | Quyền đọc và thực thi (r-x)		|
+| 6       | Setgid và Setuid       	 | Quyền đọc và ghi (rw-)			|
+| 7       | Sticky, Setgid và Setuid | Quyền đọc, ghi và thực thi (rwx)	|
