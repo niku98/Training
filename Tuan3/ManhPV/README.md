@@ -4,21 +4,25 @@
 ### Mục lục
 1. [Linux](#linux-start)
 - [Linux là gì?](#what-is-linux)
-- [Một số Distro của Linux](#linux-distro)
-- [Ưu nhược điểm của Linux](#linux-dis-advantages)
-- [Ưu điểm](#linux-advantages)
-- [Nhược điểm](#linux-disadvantages)
-- [User và Group trong Linux](#linux-user-group)
-- [User](#linux-user)
-- [Group](#linux-usergroup)
-- [Phân quyền trong Linux](#linux-user-role)
-- [Các quyền của user](#linux-roles)
-- [Cách xem quyền của File - Folder](#linux-view-role)
-- [Thay đổi quyền](#linux-change-role)
+	- [Một số Distro của Linux](#linux-distro)
+	- [Ưu nhược điểm của Linux](#linux-dis-advantages)
+		- [Ưu điểm](#linux-advantages)
+		- [Nhược điểm](#linux-disadvantages)
+	- [User và Group trong Linux](#linux-user-group)
+		- [User](#linux-user)
+		- [Group](#linux-usergroup)
+	- [Phân quyền trong Linux](#linux-user-role)
+		- [Các quyền của user](#linux-roles)
+		- [Cách xem quyền của File - Folder](#linux-view-role)
+		- [Thay đổi quyền](#linux-change-role)
 2. [Ubuntu](#ubuntu-start)
-- [Command line cơ bản](#ubuntu-basic-command)
-- [Command line quản lý file, folder](#ubuntu-file-folder-command)
-- [Cấu hình mạng](#ubuntu-config-network)
+	- [Command line cơ bản](#ubuntu-basic-command)
+		- [Command line quản lý file, folder](#ubuntu-file-folder-command)
+		- [Command line di chuyển qua lại, liệt kê file, folder](#ubuntu-change-list-folder-command)
+	- [Cấu hình mạng](#ubuntu-config-network)
+		- [Cấu hình card mạng](#ubuntu-config-card-network)
+			- [Cấu hình card mạng bằng file](#ubuntu-config-card-network-by-file)
+			- [Cấu hình SSH](#ubuntu-setup-ssh)
 ***
 ## I/Linux
 ### <a name="linux-start"></a> 1. Linux là gì?
@@ -58,10 +62,10 @@ Mỗi user còn có một định danh riêng gọi là **UID**.
 
 **Để tạo User, ta dùng lệnh:** ```useradd [option] <username>```
 - **Option:**
-- -c "Thông tin user"
-- -d <Thư mục cá nhân>
-- -m : Tạo thư mục cá nhân nếu chưa tồn tại
-- -g <nhóm của user>
+	- -c "Thông tin user"
+	- -d <Thư mục cá nhân>
+	- -m : Tạo thư mục cá nhân nếu chưa tồn tại
+	- -g <nhóm của user>
 
 **Ví dụ:** ```useradd –c "Nguyen Van A" –g serveradmin vana```
 
@@ -96,14 +100,14 @@ Mỗi group còn có một *định danh* riêng gọi là **GID**.
 ### <a name="linux-user-role"></a> 4. Phân quyền trong Linux
 #### <a name="linux-roles"></a> a. Các quyền của user
 - **Read(r : 4):**
-- **Files:** quyền được *xem* nội dung của *file*.
-- **Folders:** quyền được *xem* danh sách các 	*subfolder* và file bên trong *folder* đó.
+	- **Files:** quyền được *xem* nội dung của *file*.
+	- **Folders:** quyền được *xem* danh sách các 	*subfolder* và file bên trong *folder* đó.
 - **Write(w : 2):**
-- **Files:** quyền *thêm*, *sửa* nội dung file.
-- **Folders:** quyền *thêm*, *xóa* một *subfolder* hay *file* trong *folder* đó.
+	- **Files:** quyền *thêm*, *sửa* nội dung file.
+	- **Folders:** quyền *thêm*, *xóa* một *subfolder* hay *file* trong *folder* đó.
 - **Excute(x : 1):**
-- **Files:** cho phép thực thi *file*, nếu là *file* **program** hay **script**.
-- **Folders:** cho phép **cd** vào *folder* này.
+	- **Files:** cho phép thực thi *file*, nếu là *file* **program** hay **script**.
+	- **Folders:** cho phép **cd** vào *folder* này.
 - **Deny(- : 0):** **Không** có quyền làm một **thao tác** gì đó đối với một **file** hay **folder** xác định.
 
 #### <a name="linux-view-role"></a> b. Xem phân quyền của file, folder
@@ -114,14 +118,14 @@ Sử dụng lệnh ```ls -la``` để liệt kê danh sách *file* và *subfolde
 
 ##### Cách xem:
 - Cột đầu gồm 10 ký tự:
-- Ký tự đầu cho biết kiểu file: **d** là *folder*, **-** là *file*.
-- 9 ký tự sau chia làm **3 phần**, mỗi phần 3 ký tự:
-- **Phần 1:** Cho biết quyền của **user** sở hữu (**Owner**).
-- **Phần 2:** Cho biết quyền của **group** sở hữu (**Owner group**).
-- **Phần 3:** Cho biết quyền của các **user** khác.
+	- Ký tự đầu cho biết kiểu file: **d** là *folder*, **-** là *file*.
+	- 9 ký tự sau chia làm **3 phần**, mỗi phần 3 ký tự:
+		- **Phần 1:** Cho biết quyền của **user** sở hữu (**Owner**).
+		- **Phần 2:** Cho biết quyền của **group** sở hữu (**Owner group**).
+		- **Phần 3:** Cho biết quyền của các **user** khác.
 - Cột hai gồm 1 số:
-- **Folder:** Cho biết số lượng *subfolder* + *parentfolder* + chính nó.
-- **File:**  Cho biết số đường dẫn cố định đến nó.
+	- **Folder:** Cho biết số lượng *subfolder* + *parentfolder* + chính nó.
+	- **File:**  Cho biết số đường dẫn cố định đến nó.
 - Cột 3: Cho biết **Owner** - người sở hữu.
 - Cột 4: Cho biết **Owner group** - nhóm sở hữu.
 - Cột 5: Cho biết dung lượng *file*(*folder*).
@@ -209,3 +213,50 @@ Cách này sẽ khó sử dụng hơn với những người mới, nhưng nếu
 | ln -s file link	 				| Tạo ra một liên kết mang tên link đến file (nối tắt) 	 |
 | find folder -file_name 			| Tìm file trong folder 								 |
 | diff file1 file2 					| So sánh nội dung của 2 file hoặc của 2 folder 		 |
+
+#### <a name="ubuntu-change-list-folder-command"></a> b.Di chuyển, liệt kệ files, folders
+| Lệnh 			| Mô tả 														|
+| :------------ | :------------------------------------------------------------ |
+| pwd       	| Hiển thị tên folder hiện hành       							|
+| cd        	| Di chuyển sang folder **/home/user_folder**       			|
+| cd ~ /folder	| Di chuyển sang folder **/home/user_folder/folder**       		|
+| cd ..       	| Di chuyển ra folder cha       								|
+| cd /usr/apt	| Di chuyển đến folder **/usr/apt**       						|
+| ls -l			| Liệt kê danh sách files/folders trong folder hiện hành       	|
+| ls -a			| Liệt kê danh sách files/folders(cả ẩn) trong folder hiện hành |
+| ls -d			| Liệt kê tên files/folders trong folder hiện hành 				|
+| ls -t			| Xếp lại files theo ngày đã tạo, theo thứ tự mới nhất ngược về |
+| ls -S			| Xếp lại files theo kích thước, theo thứ giảm dần 				|
+| ls -l | more	| Liệt kê theo từng trang một dần 								|
+| dir			| Giống như lệnh ls dùng để liệt kê tập tin và thư mục 			|
+
+### <a name="ubuntu-config-network"></a> 2. Cấu hình Network
+#### <a name="ubuntu-config-card-network"></a> a. Cấu hình card mạng
+Để xem thông tin card mạng, dùng lệnh: ```ifconfig ten_card```
+- Nếu **ten_card** để trống, *terminal* sẽ hiển thị ra danh sách kèm thông tin các card mạng.
+
+![](http://www.howtoing.com/wp-content/uploads/2016/02/Ifconfig-Command.png)
+<br/>
+Để gán **IP** tạm thời cho card mạng, dùng lệnh: ```ifconfig ten_card IP netmask subnet-mask```
+- **Ví dụ:** ```ifconfig eth0 192.168.1.2 netmask 255.255.255.0```
+- Với cách gán này, **IP** sẽ mất sau khi khởi động lại máy.
+
+##### <a name="ubuntu-config-card-network-by-file"></a> Cấu hình card mạng bằng file
+Cấu hình toàn bộ các card mạng trong **Ubuntu** được lưu trong file: **/etc/network/interfaces**
+
+Để thêm cấu hình một card mạng mới, ta thêm vào cuối file này các dòng sau:
+- auto ten_card
+- iface ten_card inet static/dhcp
+Nếu để **inet** là **static** thì thêm dòng dưới:
+- address **IP**
+- netmask **Subnet_mask**
+- gateway **Default_gateway**
+
+#### <a name="ubuntu-setup-ssh"></a> b. Cấu hình SSH
+- **Bước 1:** Cài đặt **SSH**, chạy lệnh: ```sudo apt-get install openssh-server```
+
+![](http://jtmorris.net/wp-content/uploads/cache/2013/09/Ubuntu-64-bit/733241792.png)
+
+- **Bước 2:** Chạy **SSH** với câu lệnh: ```sudo service ssh restart```
+
+![](https://www.howtogeek.com/wp-content/uploads/2012/07/image232.png)
