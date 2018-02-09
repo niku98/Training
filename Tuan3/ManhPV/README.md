@@ -22,7 +22,7 @@
 	- [Cấu hình mạng](#ubuntu-config-network)
 		- [Cấu hình card mạng](#ubuntu-config-card-network)
 			- [Cấu hình card mạng bằng file](#ubuntu-config-card-network-by-file)
-			- [Cấu hình SSH](#ubuntu-setup-ssh)
+		- [Cấu hình SSH](#ubuntu-setup-ssh)
 ***
 ## I/Linux
 ### <a name="linux-start"></a> 1. Linux là gì?
