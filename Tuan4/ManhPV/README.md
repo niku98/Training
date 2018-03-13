@@ -171,7 +171,11 @@ systemctl status nginx
 
 ### 1. Nguyên lý hoạt động
 
-Khi một request được gửi đi từ *browser*, nó sẽ được phân giải địa chỉ url trong request thành IP và tìm trong cached DNS của client. Nếu tìm thấy, *browser* sẽ sử dụng địa chỉ IP đó để truy cập. Nếu không tìm thấy
+- Khi một request được gửi đi từ *browser*, nó sẽ được phân giải địa chỉ url trong request thành IP và tìm trong cached DNS của client. Nếu tìm thấy, *browser* sẽ sử dụng địa chỉ IP đó để truy cập.
+
+- Nếu không tìm thấy trong cached DNS, địa chỉ IP đó sẽ được tìm kiếm trong DNS Local.
+
+- Trong DNS Local không có, nó sẽ gửi một interative request cho Root DNS và sau đó lần lượt sẽ là Top Level DNS rồi Second Level DNS, cuối cùng chính là IP chính xác của địa chỉ url.
 
 ### 2. Cài đặt
 #### a. Bind
@@ -185,6 +189,3 @@ sudo apt-get install bind9 bind9utils bind9-doc
 	```sh
 	sudo vi /etc/bind/named.conf.options
 	```
-
-<!-- Đến đây không hiểu + không cấu hình được -->
-## IV/ MySql
