@@ -135,9 +135,9 @@ ErrorLog ${APACHE_LOG_DIR}/error.log
 
 ### 1. Nguyên lý hoạt động
 
-Không giống với các máy chủ web truyền thống, **Nginx** không dựa trên luồn (thread) để xử lý yêu cầu. Thay vào đó, nó sử dụng 1 kiến trúc bất đồng bộ hướng sự kiện linh hoạt . Kiến trúc này sử dụng ít, nhưng quan trọng hợn, là lượng bộ nhớ có thể dự đoán khi hoạt động. Đây chính là điểm mấu chốt khiến **Nginx** là 1 trong số ít những máy chủ được viết để giải quyết vấn đề **C10K**(Chi tiết tại [đây](https://en.wikipedia.org/wiki/C10k_problem))
+Không giống với các máy chủ web truyền thống, **Nginx** không dựa trên luồn (thread) để xử lý yêu cầu. Thay vào đó, nó sử dụng 1 kiến trúc bất đồng bộ hướng sự kiện linh hoạt . Kiến trúc này sử dụng ít, nhưng quan trọng hợn, là lượng bộ nhớ có thể dự đoán khi hoạt động. Đây chính là điểm mấu chốt khiến **Nginx** là 1 trong số ít những máy chủ được viết để giải quyết vấn đề **C10K** (Chi tiết tại [đây](https://en.wikipedia.org/wiki/C10k_problem))
 
-
+![](https://cms-assets.tutsplus.com/uploads/users/1160/posts/28540/image/149204501883689.png)
 
 ### 2. Cài đặt
 - Tải và cài đặt **NginX** trên *Ubuntu*:
@@ -168,7 +168,12 @@ systemctl status nginx
 ```
 <br/>
 ## III/ DNS Server
-### 1. Cài đặt
+
+### 1. Nguyên lý hoạt động
+
+Khi một request được gửi đi từ *browser*, nó sẽ được phân giải địa chỉ url trong request thành IP và tìm trong cached DNS của client. Nếu tìm thấy, *browser* sẽ sử dụng địa chỉ IP đó để truy cập. Nếu không tìm thấy
+
+### 2. Cài đặt
 #### a. Bind
 Là package để cài đặt **DNS Server**.
 Để cài đặt **Bind**, ta dùng lệnh:
